@@ -1,25 +1,22 @@
-import pymongo
+import os, sys
+from thyroid.logger import logging
+from thyroid.exception import ThyroidException
+from thyroid.utils import get_collection_as_dataframe
+from thyroid.entity import config_entity, artifact_entity
+from thyroid.components.data_ingestion import DataIngestion
+from thyroid.entity.config_entity import DataIngestionConfig
 
-# Provide the mongodb localhost url to connect python to mongodb.
-client = pymongo.MongoClient("mongodb://localhost:27017/neurolabDB")
 
-# Database Name
-dataBase = client["neurolabDB"]
 
-# Collection  Name
-collection = dataBase['Products']
+if __name__ == "__main__":
+     try:
+          training_pipeline_config = config_entity.TrainingPipelineConfig()
 
-# Sample data
-d = {'companyName': 'iNeuron',
-     'product': 'Affordable AI',
-     'courseOffered': 'Machine Learning with Deployment'}
+          #data ingestion         
+          data_ingestion_config  = config_entity.DataIngestionConfig(training_pipeline_config=training_pipeline_config)
+          print(data_ingestion_config.to_dict())
+          data_ingestion = DataIngestion(data_ingestion_config=data_ingestion_config)
+          data_ingestion_artifact = data_ingestion.initiate_data_ingestion()
 
-# Insert above records in the collection
-rec = collection.insert_one(d)
-
-# Lets Verify all the record at once present in the record with all the fields
-all_record = collection.find()
-
-# Printing all records present in the collection
-for idx, record in enumerate(all_record):
-     print(f"{idx}: {record}")
+     except Exception as e:
+          raise ThyroidException(error_message=e, error_detail=sys)

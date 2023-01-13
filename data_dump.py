@@ -1,8 +1,7 @@
+import json
 import pymongo
 import pandas as pd
-import json
-
-mongo_client= pymongo.MongoClient("mongodb+srv://MongoDB:Sai12345@cluster0.i7o85x8.mongodb.net/?retryWrites=true&w=majority")
+from thyroid.config import mongo_client
 
 DATA_FILE_PATH="/config/workspace/hypothyroid.csv"
 DATABASE_NAME="HealthCare"

@@ -1,0 +1,9 @@
+[ 2023-01-13 15:45:13,944 ] 17 root - INFO - >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> Data Ingestion <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+[ 2023-01-13 15:45:13,945 ] 28 root - INFO - Exporting collection data as pandas dataframe
+[ 2023-01-13 15:45:13,945 ] 22 root - INFO - Reading data from database: HealthCare and collection: Thyroid
+[ 2023-01-13 15:45:13,948 ] 24 root - INFO - Found columns: Index([], dtype='object')
+[ 2023-01-13 15:45:13,948 ] 28 root - INFO - Row and columns in df: (0, 0)
+[ 2023-01-13 15:45:13,948 ] 34 root - INFO - Save data in feature store
+[ 2023-01-13 15:45:13,949 ] 40 root - INFO - Create feature store folder if not available
+[ 2023-01-13 15:45:13,949 ] 44 root - INFO - Save df to feature store folder
+[ 2023-01-13 15:45:13,951 ] 49 root - INFO - split dataset into train and test set
