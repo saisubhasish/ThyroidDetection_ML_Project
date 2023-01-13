@@ -1,0 +1,8 @@
+README.md
+setup.py
+thyroid/__init__.py
+thyroid.egg-info/PKG-INFO
+thyroid.egg-info/SOURCES.txt
+thyroid.egg-info/dependency_links.txt
+thyroid.egg-info/requires.txt
+thyroid.egg-info/top_level.txt
