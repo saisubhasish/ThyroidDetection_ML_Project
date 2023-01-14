@@ -1,0 +1,88 @@
+[ 2023-01-14 05:56:35,014 ] 17 root - INFO - >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> Data Ingestion <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+[ 2023-01-14 05:56:35,014 ] 28 root - INFO - Exporting collection data as pandas dataframe
+[ 2023-01-14 05:56:35,014 ] 22 root - INFO - Reading data from database: HealthCare and collection: Thyroid
+[ 2023-01-14 05:56:35,163 ] 24 root - INFO - Found columns: Index(['_id', 'age', 'sex', 'on thyroxine', 'query on thyroxine',
+       'on antithyroid medication', 'sick', 'pregnant', 'thyroid surgery',
+       'I131 treatment', 'query hypothyroid', 'query hyperthyroid', 'lithium',
+       'goitre', 'tumor', 'hypopituitary', 'psych', 'TSH measured', 'TSH',
+       'T3 measured', 'T3', 'TT4 measured', 'TT4', 'T4U measured', 'T4U',
+       'FTI measured', 'FTI', 'TBG measured', 'TBG', 'referral source',
+       'binaryClass'],
+      dtype='object')
+[ 2023-01-14 05:56:35,163 ] 26 root - INFO - Dropping column: _id 
+[ 2023-01-14 05:56:35,166 ] 28 root - INFO - Row and columns in df: (3772, 30)
+[ 2023-01-14 05:56:35,166 ] 34 root - INFO - Replacing '?' value to np.NAN
+[ 2023-01-14 05:56:35,170 ] 39 root - INFO - Save data in feature store
+[ 2023-01-14 05:56:35,170 ] 41 root - INFO - Create feature store folder if not available
+[ 2023-01-14 05:56:35,171 ] 45 root - INFO - Save df to feature store folder
+[ 2023-01-14 05:56:35,209 ] 50 root - INFO - split dataset into train and test set
+[ 2023-01-14 05:56:35,214 ] 54 root - INFO - create dataset directory folder if not available
+[ 2023-01-14 05:56:35,214 ] 59 root - INFO - Saving train df and test df to dataset folder
+[ 2023-01-14 05:56:35,248 ] 71 root - INFO - Data ingestion artifact: DataIngestionArtifact(feature_store_file_path='/config/workspace/artifact/01142023__055635/data_ingestion/feature_store/thyroid.csv', train_file_path='/config/workspace/artifact/01142023__055635/data_ingestion/dataset/train.csv', test_file_path='/config/workspace/artifact/01142023__055635/data_ingestion/dataset/test.csv')
+[ 2023-01-14 05:56:35,250 ] 20 root - INFO - >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> Data Validation <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+[ 2023-01-14 05:56:35,250 ] 114 root - INFO - Reading base dataframe
+[ 2023-01-14 05:56:35,285 ] 117 root - INFO - Replace ? value in base df
+[ 2023-01-14 05:56:35,285 ] 119 root - INFO - Drop null values colums from base df
+[ 2023-01-14 05:56:35,302 ] 42 root - INFO - selecting column name which contains null above to 0.2
+[ 2023-01-14 05:56:35,302 ] 45 root - INFO - Columns to drop: ['T3', 'TBG']
+[ 2023-01-14 05:56:35,304 ] 122 root - INFO - Reading train dataframe
+[ 2023-01-14 05:56:35,314 ] 124 root - INFO - Reading test dataframe
+[ 2023-01-14 05:56:35,319 ] 127 root - INFO - Drop null values colums from train df
+[ 2023-01-14 05:56:35,330 ] 42 root - INFO - selecting column name which contains null above to 0.2
+[ 2023-01-14 05:56:35,331 ] 45 root - INFO - Columns to drop: ['T3', 'TBG']
+[ 2023-01-14 05:56:35,332 ] 129 root - INFO - Drop null values colums from test df
+[ 2023-01-14 05:56:35,335 ] 42 root - INFO - selecting column name which contains null above to 0.2
+[ 2023-01-14 05:56:35,336 ] 45 root - INFO - Columns to drop: ['T3', 'TBG']
+[ 2023-01-14 05:56:35,337 ] 132 root - INFO - Is all required columns present in train df
+[ 2023-01-14 05:56:35,337 ] 134 root - INFO - Is all required columns present in test df
+[ 2023-01-14 05:56:35,337 ] 138 root - INFO - As all column are available in train df hence detecting data drift
+[ 2023-01-14 05:56:35,407 ] 89 root - INFO - base df :      age sex on thyroxine query on thyroxine on antithyroid medication sick pregnant  ... T4U measured   T4U FTI measured  FTI TBG measured referral source binaryClass
+0     41   F            f                  f                         f    f        f  ...            t  1.14            t  109            f            SVHC           P
+1     23   F            f                  f                         f    f        f  ...            f   NaN            f  NaN            f           other           P
+2     46   M            f                  f                         f    f        f  ...            t  0.91            t  120            f           other           P
+3     70   F            t                  f                         f    f        f  ...            f   NaN            f  NaN            f           other           P
+4     70   F            f                  f                         f    f        f  ...            t  0.87            t   70            f             SVI           P
+...   ..  ..          ...                ...                       ...  ...      ...  ...          ...   ...          ...  ...          ...             ...         ...
+3767  30   F            f                  f                         f    f        f  ...            f   NaN            f  NaN            f           other           P
+3768  68   F            f                  f                         f    f        f  ...            t  1.08            t  114            f             SVI           P
+3769  74   F            f                  f                         f    f        f  ...            t  1.07            t  105            f           other           P
+3770  72   M            f                  f                         f    f        f  ...            t  0.94            t   87            f             SVI           P
+3771  64   F            f                  f                         f    f        f  ...            t  1.07            t   92            f           other           P
+
+[3772 rows x 28 columns] current df :        age sex on thyroxine query on thyroxine on antithyroid medication sick pregnant  ... T4U measured   T4U FTI measured    FTI TBG measured referral source binaryClass
+0     65.0   F            t                  f                         f    f        f  ...            t  1.12            t  156.0            f           other           P
+1     62.0   F            f                  f                         f    t        f  ...            t  0.74            t   98.0            f             SVI           N
+2     27.0   F            f                  f                         f    f        f  ...            t  1.19            t  123.0            f            SVHC           P
+3     80.0   F            f                  f                         f    f        f  ...            t  1.04            t   94.0            f           other           P
+4     28.0   F            f                  f                         t    f        f  ...            t  1.20            t  143.0            f           other           P
+...    ...  ..          ...                ...                       ...  ...      ...  ...          ...   ...          ...    ...          ...             ...         ...
+3012  60.0   F            f                  f                         f    f        f  ...            t  1.01            t  126.0            f           other           P
+3013  25.0   F            f                  f                         f    f        f  ...            t  0.93            t  101.0            f             SVI           P
+3014  65.0   F            t                  f                         f    f        f  ...            t  0.98            t  171.0            f           other           P
+3015  73.0   F            t                  f                         f    f        f  ...            t  0.89            t  143.0            f           other           P
+3016  75.0   M            f                  f                         f    t        f  ...            t  0.88            t  171.0            f            SVHD           P
+
+[3017 rows x 28 columns], base data 0       41
+1       23
+2       46
+3       70
+4       70
+        ..
+3767    30
+3768    68
+3769    74
+3770    72
+3771    64
+Name: age, Length: 3772, dtype: object, current data 0       65.0
+1       62.0
+2       27.0
+3       80.0
+4       28.0
+        ... 
+3012    60.0
+3013    25.0
+3014    65.0
+3015    73.0
+3016    75.0
+Name: age, Length: 3017, dtype: float64
+[ 2023-01-14 05:56:35,407 ] 92 root - INFO - Hypothesis age: object, float64 

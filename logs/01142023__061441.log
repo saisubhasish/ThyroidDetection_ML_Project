@@ -1,0 +1,39 @@
+[ 2023-01-14 06:14:42,948 ] 17 root - INFO - >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> Data Ingestion <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+[ 2023-01-14 06:14:42,948 ] 28 root - INFO - Exporting collection data as pandas dataframe
+[ 2023-01-14 06:14:42,948 ] 22 root - INFO - Reading data from database: HealthCare and collection: Thyroid
+[ 2023-01-14 06:14:43,104 ] 24 root - INFO - Found columns: Index(['_id', 'age', 'sex', 'on thyroxine', 'query on thyroxine',
+       'on antithyroid medication', 'sick', 'pregnant', 'thyroid surgery',
+       'I131 treatment', 'query hypothyroid', 'query hyperthyroid', 'lithium',
+       'goitre', 'tumor', 'hypopituitary', 'psych', 'TSH measured', 'TSH',
+       'T3 measured', 'T3', 'TT4 measured', 'TT4', 'T4U measured', 'T4U',
+       'FTI measured', 'FTI', 'TBG measured', 'TBG', 'referral source',
+       'binaryClass'],
+      dtype='object')
+[ 2023-01-14 06:14:43,104 ] 26 root - INFO - Dropping column: _id 
+[ 2023-01-14 06:14:43,107 ] 28 root - INFO - Row and columns in df: (3772, 30)
+[ 2023-01-14 06:14:43,107 ] 34 root - INFO - Replacing '?' value to np.NAN
+[ 2023-01-14 06:14:43,111 ] 39 root - INFO - Save data in feature store
+[ 2023-01-14 06:14:43,112 ] 41 root - INFO - Create feature store folder if not available
+[ 2023-01-14 06:14:43,112 ] 45 root - INFO - Save df to feature store folder
+[ 2023-01-14 06:14:43,150 ] 50 root - INFO - split dataset into train and test set
+[ 2023-01-14 06:14:43,155 ] 54 root - INFO - create dataset directory folder if not available
+[ 2023-01-14 06:14:43,155 ] 59 root - INFO - Saving train df and test df to dataset folder
+[ 2023-01-14 06:14:43,188 ] 71 root - INFO - Data ingestion artifact: DataIngestionArtifact(feature_store_file_path='/config/workspace/artifact/01142023__061442/data_ingestion/feature_store/thyroid.csv', train_file_path='/config/workspace/artifact/01142023__061442/data_ingestion/dataset/train.csv', test_file_path='/config/workspace/artifact/01142023__061442/data_ingestion/dataset/test.csv')
+[ 2023-01-14 06:14:43,191 ] 20 root - INFO - >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> Data Validation <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+[ 2023-01-14 06:14:43,191 ] 82 root - INFO - Reading base dataframe
+[ 2023-01-14 06:14:43,230 ] 85 root - INFO - Replace ? value in base df
+[ 2023-01-14 06:14:43,230 ] 87 root - INFO - Drop null values colums from base df
+[ 2023-01-14 06:14:43,248 ] 42 root - INFO - selecting column name which contains null above to 0.2
+[ 2023-01-14 06:14:43,249 ] 45 root - INFO - Columns to drop: ['T3', 'TBG']
+[ 2023-01-14 06:14:43,250 ] 90 root - INFO - Reading train dataframe
+[ 2023-01-14 06:14:43,262 ] 92 root - INFO - Reading test dataframe
+[ 2023-01-14 06:14:43,267 ] 95 root - INFO - Drop null values colums from train df
+[ 2023-01-14 06:14:43,278 ] 42 root - INFO - selecting column name which contains null above to 0.2
+[ 2023-01-14 06:14:43,279 ] 45 root - INFO - Columns to drop: ['T3', 'TBG']
+[ 2023-01-14 06:14:43,280 ] 97 root - INFO - Drop null values colums from test df
+[ 2023-01-14 06:14:43,284 ] 42 root - INFO - selecting column name which contains null above to 0.2
+[ 2023-01-14 06:14:43,284 ] 45 root - INFO - Columns to drop: ['T3', 'TBG']
+[ 2023-01-14 06:14:43,285 ] 100 root - INFO - Is all required columns present in train df
+[ 2023-01-14 06:14:43,285 ] 102 root - INFO - Is all required columns present in test df
+[ 2023-01-14 06:14:43,285 ] 106 root - INFO - Writing report in yaml file
+[ 2023-01-14 06:14:43,286 ] 111 root - INFO - Data validation artifact: DataValidationArtifact(report_file_path='/config/workspace/artifact/01142023__061442/data_validation/report.yaml')
