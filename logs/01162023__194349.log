@@ -1,0 +1,590 @@
+[ 2023-01-16 19:43:50,758 ] 17 root - INFO - >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> Data Ingestion <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+[ 2023-01-16 19:43:50,759 ] 28 root - INFO - Exporting collection data as pandas dataframe
+[ 2023-01-16 19:43:50,759 ] 22 root - INFO - Reading data from database: HealthCare and collection: Thyroid
+[ 2023-01-16 19:43:50,914 ] 24 root - INFO - Found columns: Index(['_id', 'age', 'sex', 'on thyroxine', 'query on thyroxine',
+       'on antithyroid medication', 'sick', 'pregnant', 'thyroid surgery',
+       'I131 treatment', 'query hypothyroid', 'query hyperthyroid', 'lithium',
+       'goitre', 'tumor', 'hypopituitary', 'psych', 'TSH measured', 'TSH',
+       'T3 measured', 'T3', 'TT4 measured', 'TT4', 'T4U measured', 'T4U',
+       'FTI measured', 'FTI', 'TBG measured', 'TBG', 'referral source',
+       'binaryClass'],
+      dtype='object')
+[ 2023-01-16 19:43:50,915 ] 26 root - INFO - Dropping column: _id 
+[ 2023-01-16 19:43:50,917 ] 28 root - INFO - Row and columns in df: (3772, 30)
+[ 2023-01-16 19:43:50,917 ] 34 root - INFO - Replacing '?' value to np.NAN
+[ 2023-01-16 19:43:50,922 ] 39 root - INFO - Save data in feature store
+[ 2023-01-16 19:43:50,922 ] 41 root - INFO - Create feature store folder if not available
+[ 2023-01-16 19:43:50,923 ] 45 root - INFO - Save df to feature store folder
+[ 2023-01-16 19:43:50,960 ] 50 root - INFO - split dataset into train and test set
+[ 2023-01-16 19:43:50,965 ] 54 root - INFO - create dataset directory folder if not available
+[ 2023-01-16 19:43:50,965 ] 59 root - INFO - Saving train df and test df to dataset folder
+[ 2023-01-16 19:43:50,998 ] 71 root - INFO - Data ingestion artifact: DataIngestionArtifact(feature_store_file_path='/config/workspace/artifact/01162023__194350/data_ingestion/feature_store/thyroid.csv', train_file_path='/config/workspace/artifact/01162023__194350/data_ingestion/dataset/train.csv', test_file_path='/config/workspace/artifact/01162023__194350/data_ingestion/dataset/test.csv')
+[ 2023-01-16 19:43:51,001 ] 20 root - INFO - >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> Data Validation <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+[ 2023-01-16 19:43:51,001 ] 131 root - INFO - Reading base dataframe
+[ 2023-01-16 19:43:51,038 ] 134 root - INFO - Replace ? value in base df
+[ 2023-01-16 19:43:51,039 ] 136 root - INFO - Drop null values colums from base df
+[ 2023-01-16 19:43:51,055 ] 42 root - INFO - selecting column name which contains null above to 0.2
+[ 2023-01-16 19:43:51,056 ] 45 root - INFO - Columns to drop: ['T3', 'TBG']
+[ 2023-01-16 19:43:51,057 ] 139 root - INFO - Reading train dataframe
+[ 2023-01-16 19:43:51,068 ] 141 root - INFO - Reading test dataframe
+[ 2023-01-16 19:43:51,074 ] 144 root - INFO - Drop null values colums from train df
+[ 2023-01-16 19:43:51,084 ] 42 root - INFO - selecting column name which contains null above to 0.2
+[ 2023-01-16 19:43:51,085 ] 45 root - INFO - Columns to drop: ['T3', 'TBG']
+[ 2023-01-16 19:43:51,086 ] 146 root - INFO - Drop null values colums from test df
+[ 2023-01-16 19:43:51,090 ] 42 root - INFO - selecting column name which contains null above to 0.2
+[ 2023-01-16 19:43:51,090 ] 45 root - INFO - Columns to drop: ['TBG']
+[ 2023-01-16 19:43:51,091 ] 149 root - INFO - Drop unnecessary columns from base df
+[ 2023-01-16 19:43:51,091 ] 67 root - INFO - UnnecessaColumns dropped: ['TSH measured', 'T3 measured', 'TT4 measured', 'T4U measured', 'FTI measured', 'TBG measured']
+[ 2023-01-16 19:43:51,093 ] 151 root - INFO - Drop unnecessary columns from train df
+[ 2023-01-16 19:43:51,093 ] 67 root - INFO - UnnecessaColumns dropped: ['TSH measured', 'T3 measured', 'TT4 measured', 'T4U measured', 'FTI measured', 'TBG measured']
+[ 2023-01-16 19:43:51,095 ] 153 root - INFO - Drop unnecessary columns from test df
+[ 2023-01-16 19:43:51,095 ] 67 root - INFO - UnnecessaColumns dropped: ['TSH measured', 'T3 measured', 'TT4 measured', 'T4U measured', 'FTI measured', 'TBG measured']
+[ 2023-01-16 19:43:51,097 ] 156 root - INFO - Is all required columns present in train df
+[ 2023-01-16 19:43:51,097 ] 158 root - INFO - Is all required columns present in test df
+[ 2023-01-16 19:43:51,097 ] 162 root - INFO - As all column are available in train df hence detecting data drift
+[ 2023-01-16 19:43:51,097 ] 111 root - INFO - Checking Data Types of age: object, float64 
+[ 2023-01-16 19:43:51,101 ] 118 root - INFO - Checking number of classes in in age column
+: (59     95
+60     91
+70     90
+73     81
+55     81
+       ..
+10      1
+4       1
+5       1
+455     1
+6       1
+Name: age, Length: 93, dtype: int64, 60.0     82
+59.0     74
+55.0     71
+70.0     69
+63.0     67
+         ..
+4.0       1
+5.0       1
+6.0       1
+93.0      1
+455.0     1
+Name: age, Length: 93, dtype: int64)
+[ 2023-01-16 19:43:51,102 ] 111 root - INFO - Checking Data Types of sex: object, object 
+[ 2023-01-16 19:43:51,104 ] 118 root - INFO - Checking number of classes in in sex column
+: (F    2480
+M    1142
+Name: sex, dtype: int64, F    1990
+M     904
+Name: sex, dtype: int64)
+[ 2023-01-16 19:43:51,105 ] 111 root - INFO - Checking Data Types of on thyroxine: object, object 
+[ 2023-01-16 19:43:51,107 ] 118 root - INFO - Checking number of classes in in on thyroxine column
+: (f    3308
+t     464
+Name: on thyroxine, dtype: int64, f    2640
+t     377
+Name: on thyroxine, dtype: int64)
+[ 2023-01-16 19:43:51,108 ] 111 root - INFO - Checking Data Types of query on thyroxine: object, object 
+[ 2023-01-16 19:43:51,109 ] 118 root - INFO - Checking number of classes in in query on thyroxine column
+: (f    3722
+t      50
+Name: query on thyroxine, dtype: int64, f    2980
+t      37
+Name: query on thyroxine, dtype: int64)
+[ 2023-01-16 19:43:51,111 ] 111 root - INFO - Checking Data Types of on antithyroid medication: object, object 
+[ 2023-01-16 19:43:51,112 ] 118 root - INFO - Checking number of classes in in on antithyroid medication column
+: (f    3729
+t      43
+Name: on antithyroid medication, dtype: int64, f    2985
+t      32
+Name: on antithyroid medication, dtype: int64)
+[ 2023-01-16 19:43:51,114 ] 111 root - INFO - Checking Data Types of sick: object, object 
+[ 2023-01-16 19:43:51,115 ] 118 root - INFO - Checking number of classes in in sick column
+: (f    3625
+t     147
+Name: sick, dtype: int64, f    2897
+t     120
+Name: sick, dtype: int64)
+[ 2023-01-16 19:43:51,116 ] 111 root - INFO - Checking Data Types of pregnant: object, object 
+[ 2023-01-16 19:43:51,118 ] 118 root - INFO - Checking number of classes in in pregnant column
+: (f    3719
+t      53
+Name: pregnant, dtype: int64, f    2971
+t      46
+Name: pregnant, dtype: int64)
+[ 2023-01-16 19:43:51,119 ] 111 root - INFO - Checking Data Types of thyroid surgery: object, object 
+[ 2023-01-16 19:43:51,121 ] 118 root - INFO - Checking number of classes in in thyroid surgery column
+: (f    3719
+t      53
+Name: thyroid surgery, dtype: int64, f    2973
+t      44
+Name: thyroid surgery, dtype: int64)
+[ 2023-01-16 19:43:51,122 ] 111 root - INFO - Checking Data Types of I131 treatment: object, object 
+[ 2023-01-16 19:43:51,124 ] 118 root - INFO - Checking number of classes in in I131 treatment column
+: (f    3713
+t      59
+Name: I131 treatment, dtype: int64, f    2969
+t      48
+Name: I131 treatment, dtype: int64)
+[ 2023-01-16 19:43:51,125 ] 111 root - INFO - Checking Data Types of query hypothyroid: object, object 
+[ 2023-01-16 19:43:51,127 ] 118 root - INFO - Checking number of classes in in query hypothyroid column
+: (f    3538
+t     234
+Name: query hypothyroid, dtype: int64, f    2839
+t     178
+Name: query hypothyroid, dtype: int64)
+[ 2023-01-16 19:43:51,128 ] 111 root - INFO - Checking Data Types of query hyperthyroid: object, object 
+[ 2023-01-16 19:43:51,129 ] 118 root - INFO - Checking number of classes in in query hyperthyroid column
+: (f    3535
+t     237
+Name: query hyperthyroid, dtype: int64, f    2823
+t     194
+Name: query hyperthyroid, dtype: int64)
+[ 2023-01-16 19:43:51,131 ] 111 root - INFO - Checking Data Types of lithium: object, object 
+[ 2023-01-16 19:43:51,132 ] 118 root - INFO - Checking number of classes in in lithium column
+: (f    3754
+t      18
+Name: lithium, dtype: int64, f    3002
+t      15
+Name: lithium, dtype: int64)
+[ 2023-01-16 19:43:51,133 ] 111 root - INFO - Checking Data Types of goitre: object, object 
+[ 2023-01-16 19:43:51,135 ] 118 root - INFO - Checking number of classes in in goitre column
+: (f    3738
+t      34
+Name: goitre, dtype: int64, f    2987
+t      30
+Name: goitre, dtype: int64)
+[ 2023-01-16 19:43:51,136 ] 111 root - INFO - Checking Data Types of tumor: object, object 
+[ 2023-01-16 19:43:51,138 ] 118 root - INFO - Checking number of classes in in tumor column
+: (f    3676
+t      96
+Name: tumor, dtype: int64, f    2938
+t      79
+Name: tumor, dtype: int64)
+[ 2023-01-16 19:43:51,139 ] 111 root - INFO - Checking Data Types of hypopituitary: object, object 
+[ 2023-01-16 19:43:51,141 ] 118 root - INFO - Checking number of classes in in hypopituitary column
+: (f    3771
+t       1
+Name: hypopituitary, dtype: int64, f    3016
+t       1
+Name: hypopituitary, dtype: int64)
+[ 2023-01-16 19:43:51,142 ] 111 root - INFO - Checking Data Types of psych: object, object 
+[ 2023-01-16 19:43:51,144 ] 118 root - INFO - Checking number of classes in in psych column
+: (f    3588
+t     184
+Name: psych, dtype: int64, f    2867
+t     150
+Name: psych, dtype: int64)
+[ 2023-01-16 19:43:51,145 ] 111 root - INFO - Checking Data Types of TSH: object, float64 
+[ 2023-01-16 19:43:51,148 ] 118 root - INFO - Checking number of classes in in TSH column
+: (0.2     116
+1.3     105
+1.1      97
+1.4      91
+1.5      80
+       ... 
+86        1
+18.4      1
+89        1
+29        1
+40        1
+Name: TSH, Length: 287, dtype: int64, 0.2      90
+1.1      85
+1.3      78
+1.4      69
+1.6      67
+         ..
+89.0      1
+61.0      1
+530.0     1
+99.0      1
+50.0      1
+Name: TSH, Length: 277, dtype: int64)
+[ 2023-01-16 19:43:51,149 ] 111 root - INFO - Checking Data Types of TT4: object, float64 
+[ 2023-01-16 19:43:51,152 ] 118 root - INFO - Checking number of classes in in TT4 column
+: (101    71
+93     67
+98     63
+103    63
+102    59
+       ..
+289     1
+240     1
+43      1
+34      1
+258     1
+Name: TT4, Length: 241, dtype: int64, 98.0     52
+93.0     51
+103.0    51
+102.0    50
+101.0    48
+         ..
+258.0     1
+24.0      1
+196.0     1
+246.0     1
+9.5       1
+Name: TT4, Length: 233, dtype: int64)
+[ 2023-01-16 19:43:51,153 ] 111 root - INFO - Checking Data Types of T4U: object, float64 
+[ 2023-01-16 19:43:51,156 ] 118 root - INFO - Checking number of classes in in T4U column
+: (0.99    95
+0.9     93
+1.01    91
+1       90
+0.92    89
+        ..
+1.84     1
+0.57     1
+2.03     1
+1.97     1
+0.25     1
+Name: T4U, Length: 146, dtype: int64, 0.920    78
+1.010    77
+0.990    76
+0.950    74
+0.970    72
+         ..
+0.360     1
+2.030     1
+1.800     1
+0.944     1
+1.760     1
+Name: T4U, Length: 143, dtype: int64)
+[ 2023-01-16 19:43:51,157 ] 111 root - INFO - Checking Data Types of FTI: object, float64 
+[ 2023-01-16 19:43:51,159 ] 118 root - INFO - Checking number of classes in in FTI column
+: (100    73
+93     70
+114    65
+98     64
+107    64
+       ..
+349     1
+221     1
+187     1
+39      1
+227     1
+Name: FTI, Length: 234, dtype: int64, 100.0    60
+101.0    53
+93.0     52
+98.0     52
+107.0    52
+         ..
+185.0     1
+283.0     1
+291.0     1
+281.0     1
+244.0     1
+Name: FTI, Length: 223, dtype: int64)
+[ 2023-01-16 19:43:51,161 ] 111 root - INFO - Checking Data Types of referral source: object, object 
+[ 2023-01-16 19:43:51,162 ] 118 root - INFO - Checking number of classes in in referral source column
+: (other    2201
+SVI      1034
+SVHC      386
+STMW      112
+SVHD       39
+Name: referral source, dtype: int64, other    1773
+SVI       804
+SVHC      314
+STMW       96
+SVHD       30
+Name: referral source, dtype: int64)
+[ 2023-01-16 19:43:51,163 ] 111 root - INFO - Checking Data Types of binaryClass: object, object 
+[ 2023-01-16 19:43:51,165 ] 118 root - INFO - Checking number of classes in in binaryClass column
+: (P    3481
+N     291
+Name: binaryClass, dtype: int64, P    2787
+N     230
+Name: binaryClass, dtype: int64)
+[ 2023-01-16 19:43:51,166 ] 165 root - INFO - As all column are available in test df hence detecting data drift
+[ 2023-01-16 19:43:51,166 ] 111 root - INFO - Checking Data Types of age: object, int64 
+[ 2023-01-16 19:43:51,169 ] 118 root - INFO - Checking number of classes in in age column
+: (59     95
+60     91
+70     90
+73     81
+55     81
+       ..
+10      1
+4       1
+5       1
+455     1
+6       1
+Name: age, Length: 93, dtype: int64, 72    26
+58    22
+70    21
+59    21
+68    19
+      ..
+8      1
+2      1
+93     1
+89     1
+11     1
+Name: age, Length: 83, dtype: int64)
+[ 2023-01-16 19:43:51,170 ] 111 root - INFO - Checking Data Types of sex: object, object 
+[ 2023-01-16 19:43:51,171 ] 118 root - INFO - Checking number of classes in in sex column
+: (F    2480
+M    1142
+Name: sex, dtype: int64, F    490
+M    238
+Name: sex, dtype: int64)
+[ 2023-01-16 19:43:51,172 ] 111 root - INFO - Checking Data Types of on thyroxine: object, object 
+[ 2023-01-16 19:43:51,174 ] 118 root - INFO - Checking number of classes in in on thyroxine column
+: (f    3308
+t     464
+Name: on thyroxine, dtype: int64, f    668
+t     87
+Name: on thyroxine, dtype: int64)
+[ 2023-01-16 19:43:51,175 ] 111 root - INFO - Checking Data Types of query on thyroxine: object, object 
+[ 2023-01-16 19:43:51,176 ] 118 root - INFO - Checking number of classes in in query on thyroxine column
+: (f    3722
+t      50
+Name: query on thyroxine, dtype: int64, f    742
+t     13
+Name: query on thyroxine, dtype: int64)
+[ 2023-01-16 19:43:51,177 ] 111 root - INFO - Checking Data Types of on antithyroid medication: object, object 
+[ 2023-01-16 19:43:51,179 ] 118 root - INFO - Checking number of classes in in on antithyroid medication column
+: (f    3729
+t      43
+Name: on antithyroid medication, dtype: int64, f    744
+t     11
+Name: on antithyroid medication, dtype: int64)
+[ 2023-01-16 19:43:51,180 ] 111 root - INFO - Checking Data Types of sick: object, object 
+[ 2023-01-16 19:43:51,181 ] 118 root - INFO - Checking number of classes in in sick column
+: (f    3625
+t     147
+Name: sick, dtype: int64, f    728
+t     27
+Name: sick, dtype: int64)
+[ 2023-01-16 19:43:51,182 ] 111 root - INFO - Checking Data Types of pregnant: object, object 
+[ 2023-01-16 19:43:51,184 ] 118 root - INFO - Checking number of classes in in pregnant column
+: (f    3719
+t      53
+Name: pregnant, dtype: int64, f    748
+t      7
+Name: pregnant, dtype: int64)
+[ 2023-01-16 19:43:51,185 ] 111 root - INFO - Checking Data Types of thyroid surgery: object, object 
+[ 2023-01-16 19:43:51,187 ] 118 root - INFO - Checking number of classes in in thyroid surgery column
+: (f    3719
+t      53
+Name: thyroid surgery, dtype: int64, f    746
+t      9
+Name: thyroid surgery, dtype: int64)
+[ 2023-01-16 19:43:51,188 ] 111 root - INFO - Checking Data Types of I131 treatment: object, object 
+[ 2023-01-16 19:43:51,189 ] 118 root - INFO - Checking number of classes in in I131 treatment column
+: (f    3713
+t      59
+Name: I131 treatment, dtype: int64, f    744
+t     11
+Name: I131 treatment, dtype: int64)
+[ 2023-01-16 19:43:51,190 ] 111 root - INFO - Checking Data Types of query hypothyroid: object, object 
+[ 2023-01-16 19:43:51,192 ] 118 root - INFO - Checking number of classes in in query hypothyroid column
+: (f    3538
+t     234
+Name: query hypothyroid, dtype: int64, f    699
+t     56
+Name: query hypothyroid, dtype: int64)
+[ 2023-01-16 19:43:51,193 ] 111 root - INFO - Checking Data Types of query hyperthyroid: object, object 
+[ 2023-01-16 19:43:51,194 ] 118 root - INFO - Checking number of classes in in query hyperthyroid column
+: (f    3535
+t     237
+Name: query hyperthyroid, dtype: int64, f    712
+t     43
+Name: query hyperthyroid, dtype: int64)
+[ 2023-01-16 19:43:51,195 ] 111 root - INFO - Checking Data Types of lithium: object, object 
+[ 2023-01-16 19:43:51,197 ] 118 root - INFO - Checking number of classes in in lithium column
+: (f    3754
+t      18
+Name: lithium, dtype: int64, f    752
+t      3
+Name: lithium, dtype: int64)
+[ 2023-01-16 19:43:51,198 ] 111 root - INFO - Checking Data Types of goitre: object, object 
+[ 2023-01-16 19:43:51,199 ] 118 root - INFO - Checking number of classes in in goitre column
+: (f    3738
+t      34
+Name: goitre, dtype: int64, f    751
+t      4
+Name: goitre, dtype: int64)
+[ 2023-01-16 19:43:51,200 ] 111 root - INFO - Checking Data Types of tumor: object, object 
+[ 2023-01-16 19:43:51,202 ] 118 root - INFO - Checking number of classes in in tumor column
+: (f    3676
+t      96
+Name: tumor, dtype: int64, f    738
+t     17
+Name: tumor, dtype: int64)
+[ 2023-01-16 19:43:51,203 ] 111 root - INFO - Checking Data Types of hypopituitary: object, object 
+[ 2023-01-16 19:43:51,255 ] 118 root - INFO - Checking number of classes in in hypopituitary column
+: (f    3771
+t       1
+Name: hypopituitary, dtype: int64, f    755
+Name: hypopituitary, dtype: int64)
+[ 2023-01-16 19:43:51,257 ] 111 root - INFO - Checking Data Types of psych: object, object 
+[ 2023-01-16 19:43:51,258 ] 118 root - INFO - Checking number of classes in in psych column
+: (f    3588
+t     184
+Name: psych, dtype: int64, f    721
+t     34
+Name: psych, dtype: int64)
+[ 2023-01-16 19:43:51,259 ] 111 root - INFO - Checking Data Types of TSH: object, float64 
+[ 2023-01-16 19:43:51,262 ] 118 root - INFO - Checking number of classes in in TSH column
+: (0.2     116
+1.3     105
+1.1      97
+1.4      91
+1.5      80
+       ... 
+86        1
+18.4      1
+89        1
+29        1
+40        1
+Name: TSH, Length: 287, dtype: int64, 1.30     27
+0.20     26
+1.40     22
+1.80     21
+1.00     19
+         ..
+4.30      1
+0.64      1
+36.00     1
+21.00     1
+0.46      1
+Name: TSH, Length: 169, dtype: int64)
+[ 2023-01-16 19:43:51,263 ] 111 root - INFO - Checking Data Types of TT4: object, float64 
+[ 2023-01-16 19:43:51,266 ] 118 root - INFO - Checking number of classes in in TT4 column
+: (101    71
+93     67
+98     63
+103    63
+102    59
+       ..
+289     1
+240     1
+43      1
+34      1
+258     1
+Name: TT4, Length: 241, dtype: int64, 101.0    23
+93.0     16
+82.0     16
+120.0    16
+100.0    14
+         ..
+192.0     1
+197.0     1
+33.0      1
+213.0     1
+5.8       1
+Name: TT4, Length: 150, dtype: int64)
+[ 2023-01-16 19:43:51,267 ] 111 root - INFO - Checking Data Types of T4U: object, float64 
+[ 2023-01-16 19:43:51,270 ] 118 root - INFO - Checking number of classes in in T4U column
+: (0.99    95
+0.9     93
+1.01    91
+1       90
+0.92    89
+        ..
+1.84     1
+0.57     1
+2.03     1
+1.97     1
+0.25     1
+Name: T4U, Length: 146, dtype: int64, 0.90    25
+0.96    24
+0.93    24
+0.98    21
+1.05    20
+        ..
+0.66     1
+1.52     1
+2.01     1
+1.41     1
+1.31     1
+Name: T4U, Length: 95, dtype: int64)
+[ 2023-01-16 19:43:51,271 ] 111 root - INFO - Checking Data Types of FTI: object, float64 
+[ 2023-01-16 19:43:51,274 ] 118 root - INFO - Checking number of classes in in FTI column
+: (100    73
+93     70
+114    65
+98     64
+107    64
+       ..
+349     1
+221     1
+187     1
+39      1
+227     1
+Name: FTI, Length: 234, dtype: int64, 93.0     18
+96.0     18
+92.0     17
+104.0    16
+114.0    15
+         ..
+182.0     1
+49.0      1
+216.0     1
+186.0     1
+56.0      1
+Name: FTI, Length: 143, dtype: int64)
+[ 2023-01-16 19:43:51,275 ] 111 root - INFO - Checking Data Types of referral source: object, object 
+[ 2023-01-16 19:43:51,276 ] 118 root - INFO - Checking number of classes in in referral source column
+: (other    2201
+SVI      1034
+SVHC      386
+STMW      112
+SVHD       39
+Name: referral source, dtype: int64, other    428
+SVI      230
+SVHC      72
+STMW      16
+SVHD       9
+Name: referral source, dtype: int64)
+[ 2023-01-16 19:43:51,277 ] 111 root - INFO - Checking Data Types of binaryClass: object, object 
+[ 2023-01-16 19:43:51,279 ] 118 root - INFO - Checking number of classes in in binaryClass column
+: (P    3481
+N     291
+Name: binaryClass, dtype: int64, P    694
+N     61
+Name: binaryClass, dtype: int64)
+[ 2023-01-16 19:43:51,280 ] 169 root - INFO - Writing report in yaml file
+[ 2023-01-16 19:43:51,290 ] 174 root - INFO - Data validation artifact: DataValidationArtifact(report_file_path='/config/workspace/artifact/01162023__194350/data_validation/report.yaml')
+[ 2023-01-16 19:43:51,290 ] 24 root - INFO - >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> Data Transformation <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+[ 2023-01-16 19:43:51,291 ] 88 root - INFO - Reading training and testing file
+[ 2023-01-16 19:43:51,307 ] 93 root - INFO - Converting the categorical data to numerical
+[ 2023-01-16 19:43:51,307 ] 39 root - INFO - Replacing 'f' to 0 and 't' to 1 in dataframe
+[ 2023-01-16 19:43:51,342 ] 42 root - INFO - Manipulating data with one-hot encoding
+[ 2023-01-16 19:43:51,346 ] 45 root - INFO - Replacing 'F' to 0 and 'M' to 1 
+[ 2023-01-16 19:43:51,348 ] 39 root - INFO - Replacing 'f' to 0 and 't' to 1 in dataframe
+[ 2023-01-16 19:43:51,359 ] 42 root - INFO - Manipulating data with one-hot encoding
+[ 2023-01-16 19:43:51,362 ] 45 root - INFO - Replacing 'F' to 0 and 'M' to 1 
+[ 2023-01-16 19:43:51,363 ] 98 root - INFO - Converting columns datatypes to float type
+[ 2023-01-16 19:43:51,365 ] 104 root - INFO - Handling outlier and null value in 'age' and 'sex' column
+[ 2023-01-16 19:43:51,370 ] 109 root - INFO - Selecting input feature for train and test dataframe
+[ 2023-01-16 19:43:51,371 ] 114 root - INFO - Selecting target feature for train and test dataframe
+[ 2023-01-16 19:43:51,371 ] 119 root - INFO - Encoding the target feature values
+[ 2023-01-16 19:43:51,374 ] 126 root - INFO - Target feature label encoded values: [1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 1 1 1 1 1 1 1 0 1
+ 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 1 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
+ 1 1 1 1 1 1 1 1 1 1 0 1 1 1 0 1 1 0 1 1 1 0 1 1 1 1 1 1 1 0 1 1 1 1 1 1 1
+ 1 1 1 1 1 1 1 1 1 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 1 1 1
+ 1 1 1 1 1 1 1 1 1 1 1 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
+ 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 1 1 1 1 1 0 1 1 1 1 1 1 1 1 1
+ 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 1 1 1 1 1 1 0 1 1 1 1 1 1 1 0 1 1 1 1 1
+ 1 1 1 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
+ 1 1 1 1 1 1 0 1 1 1 1 1 1 0 1 1 1 1 1 0 1 1 1 1 1 1 1 1 1 0 1 1 1 1 1 1 1
+ 1 1 1 1 1 1 0 1 1 1 1 1 1 1 1 0 1 1 0 1 1 1 1 1 1 1 0 1 1 1 1 1 1 1 1 1 1
+ 1 1 1 1 1 1 1 0 1 1 1 1 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
+ 1 1 1 0 1 1 1 1 1 1 1 1 1 1 1 1 1 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
+ 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 1 0 1 1 1 1
+ 1 1 0 1 0 1 1 1 1 1 1 1 1 1 1 1 1 0 1 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
+ 1 1 0 1 1 1 1 1 0 1 1 1 1 1 1 1 1 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
+ 1 1 0 1 1 0 0 1 1 1 1 1 1 1 0 1 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 1
+ 1 1 1 1 1 1 1 0 1 1 1 1 1 1 1 1 1 1 1 1 0 1 1 1 0 1 1 1 1 1 1 1 1 1 1 1 1
+ 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
+ 1 1 1 1 0 1 0 1 1 1 1 0 1 1 1 1 0 1 1 1 1 1 1 1 1 1 1 1 0 1 0 1 1 1 1 1 1
+ 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 1 1 1 1 1
+ 1 0 1 1 1 1 1 1 1 1 1 1 1 1 1]
+[ 2023-01-16 19:43:53,145 ] 138 root - INFO - Before resampling in training set Input: (3017, 32) Target:(3017,)
+[ 2023-01-16 19:43:53,581 ] 140 root - INFO - After resampling in training set Input: (5566, 32) Target:(5566,)
+[ 2023-01-16 19:43:53,581 ] 142 root - INFO - Before resampling in testing set Input: (755, 32) Target:(755,)
+[ 2023-01-16 19:43:53,662 ] 144 root - INFO - After resampling in testing set Input: (1386, 32) Target:(1386,)
+[ 2023-01-16 19:43:53,668 ] 66 root - INFO - Entered the save_object method of utils
+[ 2023-01-16 19:43:53,672 ] 70 root - INFO - Exited the save_object method of utils
+[ 2023-01-16 19:43:53,672 ] 66 root - INFO - Entered the save_object method of utils
+[ 2023-01-16 19:43:53,673 ] 70 root - INFO - Exited the save_object method of utils
+[ 2023-01-16 19:43:53,673 ] 166 root - INFO - Data transformation object FeatureEngineeringArtifact(imputer_object_path='/config/workspace/artifact/01162023__194350/feature_engineering/imputer/imputer.pkl', transformed_train_path='/config/workspace/artifact/01162023__194350/feature_engineering/transformed/train.npz', transformed_test_path='/config/workspace/artifact/01162023__194350/feature_engineering/transformed/test.npz', target_encoder_path='/config/workspace/artifact/01162023__194350/feature_engineering/target_encoder/target_encoder.pkl')

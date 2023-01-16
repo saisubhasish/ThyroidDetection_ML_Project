@@ -53,6 +53,26 @@ class DataValidation:
         except Exception as e:
             raise ThyroidException(e, sys)
 
+    def drop_unnecessary_columns(self, df:pd.DataFrame, report_key_name:str)->Optional[pd.DataFrame]:
+        """
+        This function will drop unnecessary columns from dataframe
+        
+
+        df : Accepts a pandas dataframe
+        =========================================================================================
+        returns Pandas Dataframe by dropping 'TSH measured', 'T3 measured', 'TT4 measured', 'T4U measured', 'FTI measured', 'TBG measured'
+        """
+        try:
+            drop_columns = ['TSH measured', 'T3 measured', 'TT4 measured', 'T4U measured', 'FTI measured', 'TBG measured']
+            logging.info(f"UnnecessaColumns dropped: {drop_columns}")
+            self.validation_error[report_key_name] = drop_columns
+            drop_columns = df[drop_columns]
+            df.drop(columns=drop_columns, axis=1, inplace=True)
+            return df
+            
+        except Exception as e:
+            raise ThyroidException(e, sys)
+
     def is_required_columns_exists(self,base_df:pd.DataFrame,current_df:pd.DataFrame,report_key_name:str)->bool:
         """
         This function checks if required columns exists or not by comparing current df with base df and returns
@@ -126,16 +146,23 @@ class DataValidation:
             logging.info("Drop null values colums from test df")
             test_df = self.drop_missing_values_columns(df=test_df,report_key_name="missing_values_within_test_dataset")
 
+            logging.info("Drop unnecessary columns from base df")
+            base_df = self.drop_unnecessary_columns(df=base_df, report_key_name="dropping_unnecessary_columns_base_df")
+            logging.info("Drop unnecessary columns from train df")
+            train_df = self.drop_unnecessary_columns(df=train_df, report_key_name="dropping_unnecessary_columns_train_df")
+            logging.info("Drop unnecessary columns from test df")
+            test_df = self.drop_unnecessary_columns(df=test_df, report_key_name="dropping_unnecessary_columns_test_df")
+
             logging.info("Is all required columns present in train df")
             train_df_columns_status = self.is_required_columns_exists(base_df=base_df, current_df=train_df,report_key_name="missing_columns_within_train_dataset")
             logging.info("Is all required columns present in test df")
             test_df_columns_status = self.is_required_columns_exists(base_df=base_df, current_df=test_df,report_key_name="missing_columns_within_test_dataset")
 
             if train_df_columns_status:     # If True
-                logging.info("As all column are available in train df hence detecting data drift")
+                logging.info("As all column are available in train df hence detecting data drift in train dataframe")
                 self.data_drift(base_df=base_df, current_df=train_df,report_key_name="data_drift_within_train_dataset")
             if test_df_columns_status:     # If True
-                logging.info("As all column are available in test df hence detecting data drift")
+                logging.info("As all column are available in test df hence detecting data drift test dataframe")
                 self.data_drift(base_df=base_df, current_df=test_df,report_key_name="data_drift_within_test_dataset")
             
             # Write the report

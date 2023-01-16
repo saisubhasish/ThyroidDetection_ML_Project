@@ -6,7 +6,7 @@ from thyroid.exception import ThyroidException
 FILE_NAME = 'thyroid.csv'
 TRAIN_FILE_NAME = 'train.csv'
 TEST_FILE_NAME = 'test.csv'
-TRANSFORMER_OBJECT_FILE_NAME = "transformer.pkl"
+IMPUTER_OBJECT_FILE_NAME = "knn_imputer.pkl"
 TARGET_ENCODER_OBJECT_FILE_NAME = "target_encoder.pkl"
 MODEL_FILE_NAME = "model.pkl"
 
@@ -54,7 +54,18 @@ class DataValidationConfig:
         except Exception as e:
             raise ThyroidException(e, sys)
 
-class DataTransformationConfig:...
+class FeatureEngineeringConfig:
+    def __init__(self,training_pipeline_config:TrainingPipelineConfig):
+        try:
+            self.feature_engineering_dir = os.path.join(training_pipeline_config.artifact_dir , "feature_engineering")
+            self.imputer_object_path = os.path.join(self.feature_engineering_dir,"imputer",IMPUTER_OBJECT_FILE_NAME)
+            self.transformed_train_path =  os.path.join(self.feature_engineering_dir,"transformed",TRAIN_FILE_NAME.replace("csv","npz"))
+            self.transformed_test_path =os.path.join(self.feature_engineering_dir,"transformed",TEST_FILE_NAME.replace("csv","npz"))
+            self.target_encoder_path = os.path.join(self.feature_engineering_dir,"target_encoder",TARGET_ENCODER_OBJECT_FILE_NAME)
+
+        except Exception as e:
+            raise ThyroidException(e, sys)
+
 class ModelTrainerConfig:...
 class ModelEvaluationConfig:...
 class ModelPusherConfig:...
