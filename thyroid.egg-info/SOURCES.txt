@@ -4,6 +4,7 @@ thyroid/__init__.py
 thyroid/config.py
 thyroid/exception.py
 thyroid/logger.py
+thyroid/predictor.py
 thyroid/utils.py
 thyroid.egg-info/PKG-INFO
 thyroid.egg-info/SOURCES.txt

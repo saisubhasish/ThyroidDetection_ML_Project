@@ -77,5 +77,20 @@ class ModelTrainerConfig:
         except Exception as e:
             raise ThyroidException(e, sys)
 
-class ModelEvaluationConfig:...
-class ModelPusherConfig:...
+class ModelEvaluationConfig:
+    def __init__(self,training_pipeline_config:TrainingPipelineConfig):
+        self.change_threshold = 0.01
+
+
+class ModelPusherConfig:
+    def __init__(self,training_pipeline_config:TrainingPipelineConfig):
+        try:
+            self.model_pusher_dir = os.path.join(training_pipeline_config.artifact_dir , "model_pusher")
+            # Saving models outside of artifact dir to save model in each run
+            self.saved_model_dir = os.path.join("saved_models")
+            self.pusher_model_dir = os.path.join(self.model_pusher_dir,"saved_models")
+            self.pusher_model_path = os.path.join(self.pusher_model_dir,MODEL_FILE_NAME)
+            self.pusher_target_encoder_path = os.path.join(self.pusher_model_dir,TARGET_ENCODER_OBJECT_FILE_NAME)
+
+        except Exception as e:
+            raise ThyroidException(e, sys)
