@@ -56,7 +56,7 @@ class ModelEvaluation:
             logging.info("Currently trained model objects")
             # Currently trained model objects
             current_model  = load_object(file_path=self.model_trainer_artifact.model_path)
-            current_target_encoder = load_object(file_path=self.data_transformation_artifact.target_encoder_path)
+            current_target_encoder = load_object(file_path=self.feature_engineering_artifact.   target_encoder_path)
             
             # Reading test file
             test_df = pd.read_csv(self.data_ingestion_artifact.test_file_path)
@@ -65,7 +65,7 @@ class ModelEvaluation:
             y_true =target_encoder.transform(target_df)
             
             # Accuracy using previous trained model
-            npz= np.load(feature_engineering_artifact.transformed_test_path)
+            npz= np.load(self.feature_engineering_artifact.transformed_test_path)
             input_arr= pd.DataFrame.from_dict({item: npz[item] for item in npz.files}, orient='index')
             y_pred = model.predict(input_arr)
 

@@ -1,48 +1,45 @@
 import os, sys
-from sensor.logger import logging
-from sensor.exception import SensorException
-from sensor.predictor import ModelResolver
-from sensor.entity.config_entity import ModelPusherConfig
-from sensor.utils import save_object, load_object
-from sensor.entity.artifact_entity import DataTransformationArtifact, ModelTrainerArtifact, ModelPusherArtifact
+from thyroid.logger import logging
+from thyroid.exception import ThyroidException
+from thyroid.predictor import ModelResolver
+from thyroid.entity.config_entity import ModelPusherConfig
+from thyroid.utils import save_object, load_object
+from thyroid.entity.artifact_entity import FeatureEngineeringArtifact, ModelTrainerArtifact, ModelPusherArtifact
 
 class ModelPusher:
 
     def __init__(self,model_pusher_config:ModelPusherConfig,
-        data_transformation_artifact:DataTransformationArtifact,
+        feature_engineering_artifact:FeatureEngineeringArtifact,
         model_trainer_artifact:ModelTrainerArtifact):
         try:
             logging.info(f"{'>>'*20} Model Pusher {'<<'*20}")
             self.model_pusher_config=model_pusher_config
-            self.data_transformation_artifact=data_transformation_artifact
+            self.feature_engineering_artifact=feature_engineering_artifact
             self.model_trainer_artifact=model_trainer_artifact
             self.model_resolver = ModelResolver(model_registry=self.model_pusher_config.saved_model_dir)
+
         except Exception as e:
-            raise SensorException(e, sys)
+            raise ThyroidException(e, sys)
 
     def initiate_model_pusher(self)->ModelPusherArtifact:
         try:
             # Load object 
-            logging.info("Loading transformer, model and taarget encoder")
-            transformer = load_object(file_path=self.data_transformation_artifact.transform_object_path)
+            logging.info("Loading model and target encoder")
             model = load_object(file_path=self.model_trainer_artifact.model_path)
-            target_encoder = load_object(file_path=self.data_transformation_artifact.target_encoder_path)
+            target_encoder = load_object(file_path=self.feature_engineering_artifact)
 
             # Model pusher dir
             logging.info("Saving model into model pusher directory")
-            save_object(file_path= self.model_pusher_config.pusher_transformer_path, obj=transformer)
             save_object(file_path= self.model_pusher_config.pusher_model_path, obj=model)
             save_object(file_path=self.model_pusher_config.pusher_target_encoder_path, obj=target_encoder)
 
             # Getting or fetching the directory location to save latest model in different directory in each run
             logging.info("Saving model in saved model dir")
-            transformer_path = self.model_resolver.get_latest_save_transformer_path()
             model_path = self.model_resolver.get_latest_save_model_path()
             target_encoder_path = self.model_resolver.get_latest_save_target_encoder_path()
 
             # Saved model dir outside artifact to use in prediction pipeline
             logging.info('Saving model outside of artifact directory')
-            save_object(file_path=transformer_path, obj=transformer)
             save_object(file_path=model_path, obj=model)
             save_object(file_path=target_encoder_path, obj=target_encoder)
 
@@ -53,4 +50,4 @@ class ModelPusher:
             return model_pusher_artifact
 
         except Exception as e:
-            raise SensorException(e, sys)
+            raise ThyroidException(e, sys)
