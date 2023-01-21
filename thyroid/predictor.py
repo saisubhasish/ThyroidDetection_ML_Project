@@ -1,5 +1,5 @@
 import os, sys
-from thyroid.entity.config_entity import TARGET_ENCODER_OBJECT_FILE_NAME, MODEL_FILE_NAME
+from thyroid.entity.config_entity import TARGET_ENCODER_OBJECT_FILE_NAME, MODEL_FILE_NAME, KNN_IMPUTER_OBJECT_FILE_NAME
 from glob import glob
 from typing import Optional
 from thyroid.exception import ThyroidException
@@ -12,12 +12,14 @@ class ModelResolver:
     """
     def __init__(self,model_registry:str = "saved_models",
                 target_encoder_dir_name = "target_encoder",
+                knn_imputer_dir_name = "knn_imputer",
                 model_dir_name = "model"):
 
         self.model_registry=model_registry
         os.makedirs(self.model_registry,exist_ok=True)
         self.target_encoder_dir_name=target_encoder_dir_name
         self.model_dir_name=model_dir_name
+        self.knn_imputer_dir_name= knn_imputer_dir_name
 
 
     def get_latest_dir_path(self)->Optional[str]:
@@ -62,6 +64,19 @@ class ModelResolver:
         except Exception as e:
             raise ThyroidException(e, sys)
 
+    def get_latest_knn_imputer_path(self):
+        """
+        This function raise Exception if there is no Transformer present in saved models dir
+        Otherwise returns the path of the latest Transformer present in saved_models directory
+        """
+        try:
+            latest_dir = self.get_latest_dir_path()
+            if latest_dir is None:
+                raise Exception(f"KNN Imputer is not available")
+            return os.path.join(latest_dir,self.knn_imputer_dir_name,KNN_IMPUTER_OBJECT_FILE_NAME)
+        except Exception as e:
+            raise ThyroidException(e, sys)
+
 
     def get_latest_save_dir_path(self)->str:
         """
@@ -95,6 +110,16 @@ class ModelResolver:
         try:
             latest_dir = self.get_latest_save_dir_path()
             return os.path.join(latest_dir,self.target_encoder_dir_name,TARGET_ENCODER_OBJECT_FILE_NAME)
+        except Exception as e:
+            raise ThyroidException(e, sys)
+
+    def get_latest_save_knn_imputer_path(self):
+        """
+        This function extracts the latest saved_models directory and returns the path to save the latest KNN Imputer
+        """
+        try:
+            latest_dir = self.get_latest_save_dir_path()
+            return os.path.join(latest_dir,self.knn_imputer_dir_name,KNN_IMPUTER_OBJECT_FILE_NAME)
         except Exception as e:
             raise ThyroidException(e, sys)
 

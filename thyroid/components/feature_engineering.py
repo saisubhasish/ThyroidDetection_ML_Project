@@ -1,18 +1,19 @@
 import os,sys 
 import numpy as np
 import pandas as pd
-from thyroid import utils
-from typing import Optional
-from thyroid.logger import logging
+
 from sklearn.impute import KNNImputer
-from sklearn.pipeline import Pipeline
-from imblearn.combine import SMOTETomek    # To generate some data for minority class 
-from thyroid.config import TARGET_COLUMN
-from sklearn.impute import SimpleImputer    # To populate data for missing rows
-from thyroid.exception import ThyroidException
 from sklearn.preprocessing import LabelEncoder
-from sklearn.preprocessing import StandardScaler    # To minimize the effect of outliers
+from sklearn.pipeline import Pipeline
+
+from typing import Optional
+from imblearn.combine import SMOTETomek    # To generate some data for minority class 
+
+from thyroid import utils
 from thyroid.entity import artifact_entity,config_entity
+from thyroid.exception import ThyroidException
+from thyroid.logger import logging
+from thyroid.config import TARGET_COLUMN
 
 
 
@@ -38,9 +39,6 @@ class FeatureEngineering:
         try:
             logging.info("Replacing 'f' to 0 and 't' to 1 in dataframe")
             df = df.replace({'f':0, 't':1})
-
-            logging.info("Manipulating data with one-hot encoding in 'referral source' column")
-            df = pd.get_dummies(df, columns=['referral source'])
 
             logging.info("Replacing 'F' to 0 and 'M' to 1 'sex' column")
             df['sex'] = df['sex'].replace({'F':0, 'M':1})
@@ -153,12 +151,12 @@ class FeatureEngineering:
             utils.save_numpy_array_data(file_path=self.feature_engineering_config.transformed_test_path, array=test_arr)
 
             # Saving object
-            utils.save_object(file_path=self.feature_engineering_config.imputer_object_path, obj=imputation_pipeline)
+            utils.save_object(file_path=self.feature_engineering_config.knn_imputer_object_path, obj=imputation_pipeline)
             utils.save_object(file_path=self.feature_engineering_config.target_encoder_path, obj=label_encoder)
 
             # Preparing Artifact
             feature_engineering_artifact = artifact_entity.FeatureEngineeringArtifact(
-                imputer_object_path=self.feature_engineering_config.imputer_object_path,
+                knn_imputer_object_path=self.feature_engineering_config.knn_imputer_object_path,
                 transformed_train_path = self.feature_engineering_config.transformed_train_path,
                 transformed_test_path = self.feature_engineering_config.transformed_test_path,
                 target_encoder_path = self.feature_engineering_config.target_encoder_path)

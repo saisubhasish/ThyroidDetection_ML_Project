@@ -1,17 +1,21 @@
 import os, sys
+
 from thyroid.logger import logging
 from thyroid.exception import ThyroidException
 from thyroid.utils import get_collection_as_dataframe
+
 from thyroid.entity import config_entity, artifact_entity
-from thyroid.components.data_ingestion import DataIngestion
-from thyroid.components.data_validation import DataValidation
 from thyroid.entity.config_entity import DataIngestionConfig
 from thyroid.entity.config_entity import DataValidationConfig
-from thyroid.components.feature_engineering import FeatureEngineering
 from thyroid.entity.config_entity import FeatureEngineeringConfig
+
+from thyroid.components.data_ingestion import DataIngestion
+from thyroid.components.data_validation import DataValidation
+from thyroid.components.model_pusher import ModelPusher
+from thyroid.components.feature_engineering import FeatureEngineering
 from thyroid.components.model_trainer import ModelTrainer
 from thyroid.components.model_evaluation import ModelEvaluation
-from thyroid.components.model_pusher import ModelPusher
+
 
 
 

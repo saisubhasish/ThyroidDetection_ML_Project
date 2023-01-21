@@ -60,10 +60,10 @@ class DataValidation:
 
         df : Accepts a pandas dataframe
         =========================================================================================
-        returns Pandas Dataframe by dropping 'TSH measured', 'T3 measured', 'TT4 measured', 'T4U measured', 'FTI measured', 'TBG measured'
+        returns Pandas Dataframe by dropping 'TSH measured', 'T3 measured', 'TT4 measured', 'T4U measured', 'FTI measured', 'TBG measured', 'referral source'
         """
         try:
-            drop_columns = ['TSH measured', 'T3 measured', 'TT4 measured', 'T4U measured', 'FTI measured', 'TBG measured']
+            drop_columns = ['TSH measured', 'T3 measured', 'TT4 measured', 'T4U measured', 'FTI measured', 'TBG measured', 'referral source']
             logging.info(f"UnnecessaColumns dropped: {drop_columns}")
             self.validation_error[report_key_name] = drop_columns
             drop_columns = df[drop_columns]
@@ -108,7 +108,7 @@ class DataValidation:
                 base_data,current_data = base_df[base_column],current_df[base_column]
                 # Null hypothesis : Both column data has same distribution
                 
-                logging.info(f"Checking Data Types of {base_column}: {base_data.dtype}, {current_data.dtype} ")
+                logging.info(f"Checking Data Types of '{base_column}': {base_data.dtype}, {current_data.dtype} ")
                 
                 if base_df[base_column].dtype == current_df[base_column].dtype:
                     drift_report[base_column] = {"Same data type": True}

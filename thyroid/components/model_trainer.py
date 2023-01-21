@@ -1,11 +1,14 @@
 import os,sys 
-from thyroid import utils
+
 from typing import Optional
 from xgboost import XGBClassifier
-from thyroid.logger import logging
+
 from sklearn.metrics import f1_score
-from thyroid.exception import ThyroidException
 from sklearn.model_selection import GridSearchCV
+
+from thyroid import utils
+from thyroid.logger import logging
+from thyroid.exception import ThyroidException
 from thyroid.entity import artifact_entity,config_entity
 
 
