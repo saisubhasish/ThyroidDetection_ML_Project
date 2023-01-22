@@ -28,7 +28,6 @@ class ModelTrainer:
     def fine_tune(self,x,y):
         """
         Hyper parameter tuning using GridSearchCV
-
         This function accepts x and y 
         -------------------------------------------
         Returns best paramenters for XGBClassifier
@@ -43,7 +42,7 @@ class ModelTrainer:
             grid_search = GridSearchCV(estimator= XGBClassifier(), param_grid=parameters, n_jobs=-1, verbose=3, cv=3)
             
             grid_search.fit(x, y)
-            BestParams = grid_search_xgb.best_params_
+            BestParams = grid_search.best_params_
             
             return BestParams
 

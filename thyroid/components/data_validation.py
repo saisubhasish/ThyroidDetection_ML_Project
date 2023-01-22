@@ -1,6 +1,7 @@
 import os,sys 
 import numpy as np
 import pandas as pd
+
 from thyroid import utils
 from typing import Optional
 from thyroid.logger import logging
@@ -29,7 +30,6 @@ class DataValidation:
     def drop_missing_values_columns(self,df:pd.DataFrame,report_key_name:str)->Optional[pd.DataFrame]:
         """
         This function will drop column which contains missing value more than specified threshold
-
         df : Accepts a pandas dataframe
         =========================================================================================
         returns Pandas Dataframe if atleast a single column is available after missing columns drop else None
@@ -57,13 +57,12 @@ class DataValidation:
         """
         This function will drop unnecessary columns from dataframe
         
-
         df : Accepts a pandas dataframe
         =========================================================================================
-        returns Pandas Dataframe by dropping 'TSH measured', 'T3 measured', 'TT4 measured', 'T4U measured', 'FTI measured', 'TBG measured', 'referral source'
+        returns Pandas Dataframe by dropping 'TSH measured', 'T3 measured', 'TT4 measured', 'T4U measured', 'FTI measured', 'TBG measured', 'referral source', 'query on thyroxine', 'query hypothyroid', 'query hyperthyroid'
         """
         try:
-            drop_columns = ['TSH measured', 'T3 measured', 'TT4 measured', 'T4U measured', 'FTI measured', 'TBG measured', 'referral source']
+            drop_columns = ['TSH measured', 'T3 measured', 'TT4 measured', 'T4U measured', 'FTI measured', 'TBG measured', 'referral source', 'query on thyroxine', 'query hypothyroid', 'query hyperthyroid']
             logging.info(f"UnnecessaColumns dropped: {drop_columns}")
             self.validation_error[report_key_name] = drop_columns
             drop_columns = df[drop_columns]
@@ -176,4 +175,3 @@ class DataValidation:
 
         except Exception as e:
             raise ThyroidException(e, sys)
-

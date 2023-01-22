@@ -31,7 +31,6 @@ class FeatureEngineering:
     def feature_encoding(self,df:pd.DataFrame)->Optional[pd.DataFrame]:
         """
         This function will replace the categorical data of each column to numerical (Array type)
-
         df : Accepts a pandas dataframe
         =========================================================================================
         returns Pandas Dataframe after converting to numerical value
@@ -50,7 +49,6 @@ class FeatureEngineering:
     def handling_null_value_and_outliers(self,df:pd.DataFrame)->Optional[pd.DataFrame]:
         """
         This function will fill median in 'age' to handle outlier and null and mode in 'sex' column for null value
-
         df : Accepts a pandas dataframe
         ==========================================================================================================
         returns Pandas Dataframe after filling the value

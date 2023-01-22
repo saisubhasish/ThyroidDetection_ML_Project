@@ -1,0 +1,115 @@
+data_drift_within_test_dataset:
+  FTI:
+    Column has equal number of classes: false
+  I131 treatment:
+    Column has equal number of classes: true
+  T4U:
+    Column has equal number of classes: false
+  TSH:
+    Column has equal number of classes: false
+  TT4:
+    Column has equal number of classes: false
+  age:
+    Column has equal number of classes: false
+  binaryClass:
+    Column has equal number of classes: true
+  goitre:
+    Column has equal number of classes: true
+  hypopituitary:
+    Column has equal number of classes: false
+  lithium:
+    Column has equal number of classes: true
+  on antithyroid medication:
+    Column has equal number of classes: true
+  on thyroxine:
+    Column has equal number of classes: true
+  pregnant:
+    Column has equal number of classes: true
+  psych:
+    Column has equal number of classes: true
+  sex:
+    Column has equal number of classes: true
+  sick:
+    Column has equal number of classes: true
+  thyroid surgery:
+    Column has equal number of classes: true
+  tumor:
+    Column has equal number of classes: true
+data_drift_within_train_dataset:
+  FTI:
+    Column has equal number of classes: false
+  I131 treatment:
+    Column has equal number of classes: true
+  T4U:
+    Column has equal number of classes: false
+  TSH:
+    Column has equal number of classes: false
+  TT4:
+    Column has equal number of classes: false
+  age:
+    Column has equal number of classes: true
+  binaryClass:
+    Column has equal number of classes: true
+  goitre:
+    Column has equal number of classes: true
+  hypopituitary:
+    Column has equal number of classes: true
+  lithium:
+    Column has equal number of classes: true
+  on antithyroid medication:
+    Column has equal number of classes: true
+  on thyroxine:
+    Column has equal number of classes: true
+  pregnant:
+    Column has equal number of classes: true
+  psych:
+    Column has equal number of classes: true
+  sex:
+    Column has equal number of classes: true
+  sick:
+    Column has equal number of classes: true
+  thyroid surgery:
+    Column has equal number of classes: true
+  tumor:
+    Column has equal number of classes: true
+dropping_unnecessary_columns_base_df:
+- TSH measured
+- T3 measured
+- TT4 measured
+- T4U measured
+- FTI measured
+- TBG measured
+- referral source
+- query on thyroxine
+- query hypothyroid
+- query hyperthyroid
+dropping_unnecessary_columns_test_df:
+- TSH measured
+- T3 measured
+- TT4 measured
+- T4U measured
+- FTI measured
+- TBG measured
+- referral source
+- query on thyroxine
+- query hypothyroid
+- query hyperthyroid
+dropping_unnecessary_columns_train_df:
+- TSH measured
+- T3 measured
+- TT4 measured
+- T4U measured
+- FTI measured
+- TBG measured
+- referral source
+- query on thyroxine
+- query hypothyroid
+- query hyperthyroid
+missing_values_within_base_dataset:
+- T3
+- TBG
+missing_values_within_test_dataset:
+- TBG
+missing_values_within_train_dataset:
+- T3
+- TBG

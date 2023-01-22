@@ -1,11 +1,14 @@
 import os,sys
 import pandas as pd 
 import numpy as np
+
 from thyroid import utils
 from thyroid.logger import logging
 from thyroid.exception import ThyroidException
-from sklearn.model_selection import train_test_split
 from thyroid.entity import config_entity, artifact_entity
+
+from sklearn.model_selection import train_test_split
+
 
 
 class DataIngestion:
