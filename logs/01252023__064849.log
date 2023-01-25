@@ -1,0 +1,13 @@
+[ 2023-01-25 06:48:50,759 ] 32 root - INFO - Creating model resolver object
+[ 2023-01-25 06:48:50,760 ] 34 root - INFO - Reading file :/config/workspace/hypothyroid.csv
+[ 2023-01-25 06:48:50,784 ] 37 root - INFO - Replace '?' value to nan in base and input df
+[ 2023-01-25 06:48:50,834 ] 42 root - INFO - Validating input file
+[ 2023-01-25 06:48:50,834 ] 44 root - INFO - Dropping missing value columns from current df
+[ 2023-01-25 06:48:50,854 ] 46 root - INFO - Dropping missing value columns from base df
+[ 2023-01-25 06:48:50,873 ] 49 root - INFO - Checking required columns in current df
+[ 2023-01-25 06:48:50,874 ] 52 root - INFO - Checking data drift current df
+[ 2023-01-25 06:48:50,913 ] 64 root - INFO - Feature engineering
+[ 2023-01-25 06:48:50,966 ] 75 root - INFO - Loading knn imputer to get dataset
+[ 2023-01-25 06:48:52,480 ] 84 root - INFO - Loading model to make prediction
+[ 2023-01-25 06:48:52,505 ] 89 root - INFO - Target encoder to convert predicted column into categorical
+[ 2023-01-25 06:48:52,508 ] 97 root - INFO - Creating prediction file with time stamp

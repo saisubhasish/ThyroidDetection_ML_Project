@@ -41,7 +41,7 @@ def start_training_pipeline():
          #feature engineering
          feature_engineering_config = config_entity.FeatureEngineeringConfig(training_pipeline_config=training_pipeline_config)
          feature_engineering = FeatureEngineering(feature_engineering_config=feature_engineering_config, 
-         data_ingestion_artifact=data_ingestion_artifact)
+         data_validation_artifact=data_validation_artifact)
          feature_engineering_artifact = feature_engineering.initiate_feature_engineering()
 
          #model trainer

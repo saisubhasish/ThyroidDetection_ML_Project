@@ -28,7 +28,7 @@ class ModelEvaluation:
             self.data_ingestion_artifact=data_ingestion_artifact
             self.feature_engineering_artifact=feature_engineering_artifact
             self.model_trainer_artifact=model_trainer_artifact
-            self.feature_engineering= FeatureEngineering(feature_engineering_config=config_entity.FeatureEngineeringConfig, data_ingestion_artifact=artifact_entity.DataIngestionArtifact)
+            self.feature_engineering= FeatureEngineering(feature_engineering_config=config_entity.FeatureEngineeringConfig, data_validation_artifact=artifact_entity.DataValidationArtifact)
             self.model_resolver = ModelResolver()
 
         except Exception as e:

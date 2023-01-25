@@ -22,3 +22,5 @@ thyroid/entity/__init__.py
 thyroid/entity/artifact_entity.py
 thyroid/entity/config_entity.py
 thyroid/pipeline/__init__.py
+thyroid/pipeline/batch_prediction.py
+thyroid/pipeline/training_pipeline.py

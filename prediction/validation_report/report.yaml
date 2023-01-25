@@ -1,0 +1,63 @@
+data_drift_within_input_dataset:
+  FTI:
+    Column has equal number of classes: true
+  FTI measured:
+    Column has equal number of classes: true
+  I131 treatment:
+    Column has equal number of classes: true
+  T3 measured:
+    Column has equal number of classes: true
+  T4U:
+    Column has equal number of classes: true
+  T4U measured:
+    Column has equal number of classes: true
+  TBG measured:
+    Column has equal number of classes: true
+  TSH:
+    Column has equal number of classes: true
+  TSH measured:
+    Column has equal number of classes: true
+  TT4:
+    Column has equal number of classes: true
+  TT4 measured:
+    Column has equal number of classes: true
+  age:
+    Column has equal number of classes: true
+  binaryClass:
+    Column has equal number of classes: true
+  goitre:
+    Column has equal number of classes: true
+  hypopituitary:
+    Column has equal number of classes: true
+  lithium:
+    Column has equal number of classes: true
+  on antithyroid medication:
+    Column has equal number of classes: true
+  on thyroxine:
+    Column has equal number of classes: true
+  pregnant:
+    Column has equal number of classes: true
+  psych:
+    Column has equal number of classes: true
+  query hyperthyroid:
+    Column has equal number of classes: true
+  query hypothyroid:
+    Column has equal number of classes: true
+  query on thyroxine:
+    Column has equal number of classes: true
+  referral source:
+    Column has equal number of classes: true
+  sex:
+    Column has equal number of classes: true
+  sick:
+    Column has equal number of classes: true
+  thyroid surgery:
+    Column has equal number of classes: true
+  tumor:
+    Column has equal number of classes: true
+missing_values_within_base_dataset:
+- T3
+- TBG
+missing_values_within_input_df:
+- T3
+- TBG

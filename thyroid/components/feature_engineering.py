@@ -20,17 +20,18 @@ from thyroid.config import TARGET_COLUMN
 class FeatureEngineering:
 
     def __init__(self,feature_engineering_config:config_entity.FeatureEngineeringConfig,
-                    data_ingestion_artifact:artifact_entity.DataIngestionArtifact):
+                    data_validation_artifact:artifact_entity.DataValidationArtifact):
         try:
             logging.info(f"{'>>'*20} Feature Engineering {'<<'*20}")
             self.feature_engineering_config=feature_engineering_config
-            self.data_ingestion_artifact=data_ingestion_artifact
+            self.data_validation_artifact=data_validation_artifact
         except Exception as e:
             raise ThyroidException(e, sys)
 
     def feature_encoding(self,df:pd.DataFrame)->Optional[pd.DataFrame]:
         """
         This function will replace the categorical data of each column to numerical (Array type)
+
         df : Accepts a pandas dataframe
         =========================================================================================
         returns Pandas Dataframe after converting to numerical value
@@ -49,6 +50,7 @@ class FeatureEngineering:
     def handling_null_value_and_outliers(self,df:pd.DataFrame)->Optional[pd.DataFrame]:
         """
         This function will fill median in 'age' to handle outlier and null and mode in 'sex' column for null value
+
         df : Accepts a pandas dataframe
         ==========================================================================================================
         returns Pandas Dataframe after filling the value
@@ -82,8 +84,8 @@ class FeatureEngineering:
         try:
             # Reading training and testing file
             logging.info("Reading training and testing file")
-            train_df = pd.read_csv(self.data_ingestion_artifact.train_file_path)
-            test_df = pd.read_csv(self.data_ingestion_artifact.test_file_path)
+            train_df = pd.read_csv(self.data_validation_artifact.train_file_path)
+            test_df = pd.read_csv(self.data_validation_artifact.test_file_path)
             
             # Converting the categorical data to numerical
             logging.info("Converting the categorical data to numerical")
@@ -124,6 +126,7 @@ class FeatureEngineering:
             # Imputing null values with KNNImputer
             imputation_pipeline = FeatureEngineering.get_knn_imputer_object()
             imputation_pipeline.fit_transform(input_feature_train_df)
+            logging.info(input_feature_train_df.columns)
 
             # Imputing null values
             input_feature_train_arr = imputation_pipeline.transform(input_feature_train_df)  

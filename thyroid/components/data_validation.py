@@ -1,7 +1,6 @@
 import os,sys 
 import numpy as np
 import pandas as pd
-
 from thyroid import utils
 from typing import Optional
 from thyroid.logger import logging
@@ -30,6 +29,7 @@ class DataValidation:
     def drop_missing_values_columns(self,df:pd.DataFrame,report_key_name:str)->Optional[pd.DataFrame]:
         """
         This function will drop column which contains missing value more than specified threshold
+
         df : Accepts a pandas dataframe
         =========================================================================================
         returns Pandas Dataframe if atleast a single column is available after missing columns drop else None
@@ -59,10 +59,10 @@ class DataValidation:
         
         df : Accepts a pandas dataframe
         =========================================================================================
-        returns Pandas Dataframe by dropping 'TSH measured', 'T3 measured', 'TT4 measured', 'T4U measured', 'FTI measured', 'TBG measured', 'referral source', 'query on thyroxine', 'query hypothyroid', 'query hyperthyroid'
+        returns Pandas Dataframe by dropping 'TSH measured', 'T3 measured', 'TT4 measured', 'T4U measured', 'FTI measured', 'TBG measured', 'referral source'
         """
         try:
-            drop_columns = ['TSH measured', 'T3 measured', 'TT4 measured', 'T4U measured', 'FTI measured', 'TBG measured', 'referral source', 'query on thyroxine', 'query hypothyroid', 'query hyperthyroid']
+            drop_columns = ['TSH measured', 'T3 measured', 'TT4 measured', 'T4U measured', 'FTI measured', 'TBG measured', 'referral source']
             logging.info(f"UnnecessaColumns dropped: {drop_columns}")
             self.validation_error[report_key_name] = drop_columns
             drop_columns = df[drop_columns]
@@ -163,13 +163,24 @@ class DataValidation:
             if test_df_columns_status:     # If True
                 logging.info("As all column are available in test df hence detecting data drift test dataframe")
                 self.data_drift(base_df=base_df, current_df=test_df,report_key_name="data_drift_within_test_dataset")
+
+            logging.info("create dataset directory folder if not available for validated train file and test file")
+            # Create dataset directory folder if not available
+            dataset_dir = os.path.dirname(self.data_validation_config.train_file_path)
+            os.makedirs(dataset_dir,exist_ok=True)
+
+            logging.info("Saving validated train df and test df to dataset folder")
+            # Saving validated train df and test df to dataset folder
+            train_df.to_csv(path_or_buf=self.data_validation_config.train_file_path,index=False,header=True)
+            test_df.to_csv(path_or_buf=self.data_validation_config.test_file_path,index=False,header=True)
             
             # Write the report
             logging.info("Writing report in yaml file")
             utils.write_yaml_file(file_path=self.data_validation_config.report_file_path,
             data=self.validation_error)   # valiadtion_error: drop columns, missing columns, drift report
 
-            data_validation_artifact = artifact_entity.DataValidationArtifact(report_file_path=self.data_validation_config.report_file_path)
+            data_validation_artifact = artifact_entity.DataValidationArtifact(report_file_path=self.data_validation_config.report_file_path, 
+            train_file_path=self.data_validation_config.train_file_path, test_file_path=self.data_validation_config.test_file_path)
             logging.info(f"Data validation artifact: {data_validation_artifact}")
             return data_validation_artifact
 
