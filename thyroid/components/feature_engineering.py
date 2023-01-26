@@ -127,10 +127,12 @@ class FeatureEngineering:
             imputation_pipeline = FeatureEngineering.get_knn_imputer_object()
             imputation_pipeline.fit_transform(input_feature_train_df)
             logging.info(input_feature_train_df.columns)
-
+            
             # Imputing null values
             input_feature_train_arr = imputation_pipeline.transform(input_feature_train_df)  
-            input_feature_test_arr = imputation_pipeline.transform(input_feature_test_df)
+            features_names = list(imputation_pipeline.feature_names_in_)                      #####    To handle the features in test set
+            input_feature_test_df = input_feature_test_df[features_names]
+            input_feature_test_arr = imputation_pipeline.transform(input_feature_test_df)        ##### As 'T3' is present in test_df
             
             # Handling imbalanced data by resampling
             smt = SMOTETomek(random_state=42,sampling_strategy='minority')
