@@ -7,12 +7,12 @@ from thyroid.utils import get_collection_as_dataframe
 from thyroid.entity import config_entity, artifact_entity
 from thyroid.entity.config_entity import DataIngestionConfig
 from thyroid.entity.config_entity import DataValidationConfig
-from thyroid.entity.config_entity import FeatureEngineeringConfig
+from thyroid.entity.config_entity import DataTransformationConfig
 
 from thyroid.components.data_ingestion import DataIngestion
 from thyroid.components.data_validation import DataValidation
 from thyroid.components.model_pusher import ModelPusher
-from thyroid.components.feature_engineering import FeatureEngineering
+from thyroid.components.data_transformation import DataTransformation
 from thyroid.components.model_trainer import ModelTrainer
 from thyroid.components.model_evaluation import ModelEvaluation
 
@@ -39,21 +39,21 @@ def start_training_pipeline():
          data_validation_artifact = data_validation.initiate_data_validation()
 
          #feature engineering
-         feature_engineering_config = config_entity.FeatureEngineeringConfig(training_pipeline_config=training_pipeline_config)
-         feature_engineering = FeatureEngineering(feature_engineering_config=feature_engineering_config, 
+         data_transformation_config = config_entity.DataTransformationConfig(training_pipeline_config=training_pipeline_config)
+         data_transformation = DataTransformation(data_transformation_config=data_transformation_config, 
          data_validation_artifact=data_validation_artifact)
-         feature_engineering_artifact = feature_engineering.initiate_feature_engineering()
+         data_transformation_artifact = data_transformation.initiate_data_transformation()
 
          #model trainer
          model_trainer_config = config_entity.ModelTrainerConfig(training_pipeline_config=training_pipeline_config)
-         model_trainer = ModelTrainer(model_trainer_config=model_trainer_config, feature_engineering_artifact=feature_engineering_artifact)
+         model_trainer = ModelTrainer(model_trainer_config=model_trainer_config, data_transformation_artifact=data_transformation_artifact)
          model_trainer_artifact = model_trainer.initiate_model_trainer()
 
          #model evaluation
          model_eval_config = config_entity.ModelEvaluationConfig(training_pipeline_config=training_pipeline_config)
          model_eval  = ModelEvaluation(model_eval_config=model_eval_config,
          data_ingestion_artifact=data_ingestion_artifact,
-         feature_engineering_artifact=feature_engineering_artifact,
+         data_transformation_artifact=data_transformation_artifact,
          model_trainer_artifact=model_trainer_artifact)
          model_eval_artifact = model_eval.initiate_model_evaluation()
 
@@ -61,7 +61,7 @@ def start_training_pipeline():
          model_pusher_config = config_entity.ModelPusherConfig(training_pipeline_config)
 
          model_pusher = ModelPusher(model_pusher_config=model_pusher_config, 
-                  feature_engineering_artifact=feature_engineering_artifact,
+                  data_transformation_artifact=data_transformation_artifact,
                   model_trainer_artifact=model_trainer_artifact)
 
          model_pusher_artifact = model_pusher.initiate_model_pusher()

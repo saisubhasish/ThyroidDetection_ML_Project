@@ -11,7 +11,7 @@ from thyroid.config import TARGET_COLUMN
 from thyroid.predictor import ModelResolver
 from thyroid.exception import ThyroidException
 from thyroid.entity import config_entity, artifact_entity
-from thyroid.components.feature_engineering import FeatureEngineering
+from thyroid.components.data_transformation import DataTransformation
  
 
 class ModelEvaluation:
@@ -19,16 +19,16 @@ class ModelEvaluation:
     def __init__(self,
         model_eval_config:config_entity.ModelEvaluationConfig,
         data_ingestion_artifact:artifact_entity.DataIngestionArtifact,
-        feature_engineering_artifact:artifact_entity.FeatureEngineeringArtifact,
+        data_transformation_artifact:artifact_entity.DataTransformationArtifact,
         model_trainer_artifact:artifact_entity.ModelTrainerArtifact):
         try:
             logging.info(f"{'>>'*20}  Model Evaluation {'<<'*20}")
             logging.info("___________________________________________________________________________________________________________")
             self.model_eval_config=model_eval_config
             self.data_ingestion_artifact=data_ingestion_artifact
-            self.feature_engineering_artifact=feature_engineering_artifact
+            self.data_transformation_artifact=data_transformation_artifact
             self.model_trainer_artifact=model_trainer_artifact
-            self.feature_engineering= FeatureEngineering(feature_engineering_config=config_entity.FeatureEngineeringConfig, data_validation_artifact=artifact_entity.DataValidationArtifact)
+            self.data_transformation= DataTransformation(data_transformation_config=config_entity.DataTransformationConfig, data_validation_artifact=artifact_entity.DataValidationArtifact)
             self.model_resolver = ModelResolver()
 
         except Exception as e:
@@ -64,9 +64,9 @@ class ModelEvaluation:
             
             logging.info("Currently trained model objects")
             # Currently trained model objects
-            current_knn_imputer = load_object(file_path=self.feature_engineering_artifact.knn_imputer_object_path)
+            current_knn_imputer = load_object(file_path=self.data_transformation_artifact.knn_imputer_object_path)
             current_model  = load_object(file_path=self.model_trainer_artifact.model_path)
-            current_target_encoder = load_object(file_path=self.feature_engineering_artifact.target_encoder_path)
+            current_target_encoder = load_object(file_path=self.data_transformation_artifact.target_encoder_path)
             
             # Reading test file
             test_df = pd.read_csv(self.data_ingestion_artifact.test_file_path)
@@ -78,9 +78,9 @@ class ModelEvaluation:
             exclude_columns = [TARGET_COLUMN]
             input_feature_name = list(knn_imputer.feature_names_in_)
             input_feature_test_df= test_df[input_feature_name]
-            input_feature_test_df= self.feature_engineering.feature_encoding(df=input_feature_test_df)
+            input_feature_test_df= self.data_transformation.feature_encoding(df=input_feature_test_df)
             input_feature_test_df= utils.convert_columns_float(df=input_feature_test_df, exclude_columns=exclude_columns)
-            input_feature_test_df= self.feature_engineering.handling_null_value_and_outliers(df=input_feature_test_df)
+            input_feature_test_df= self.data_transformation.handling_null_value_and_outliers(df=input_feature_test_df)
 
             input_arr= knn_imputer.transform(input_feature_test_df)
             y_pred = model.predict(input_arr)
@@ -94,9 +94,9 @@ class ModelEvaluation:
             exclude_columns = [TARGET_COLUMN]
             input_feature_name = list(current_knn_imputer.feature_names_in_)
             input_feature_test_df= test_df[input_feature_name]
-            input_feature_test_df= self.feature_engineering.feature_encoding(df=input_feature_test_df)
+            input_feature_test_df= self.data_transformation.feature_encoding(df=input_feature_test_df)
             input_feature_test_df= utils.convert_columns_float(df=input_feature_test_df, exclude_columns=exclude_columns)
-            input_feature_test_df= self.feature_engineering.handling_null_value_and_outliers(df=input_feature_test_df)
+            input_feature_test_df= self.data_transformation.handling_null_value_and_outliers(df=input_feature_test_df)
 
             input_arr= current_knn_imputer.transform(input_feature_test_df)
             y_pred= current_model.predict(input_arr)

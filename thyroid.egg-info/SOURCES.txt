@@ -13,8 +13,8 @@ thyroid.egg-info/requires.txt
 thyroid.egg-info/top_level.txt
 thyroid/components/__init__.py
 thyroid/components/data_ingestion.py
+thyroid/components/data_transformation.py
 thyroid/components/data_validation.py
-thyroid/components/feature_engineering.py
 thyroid/components/model_evaluation.py
 thyroid/components/model_pusher.py
 thyroid/components/model_trainer.py

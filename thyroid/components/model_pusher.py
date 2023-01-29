@@ -4,17 +4,17 @@ from thyroid.exception import ThyroidException
 from thyroid.predictor import ModelResolver
 from thyroid.entity.config_entity import ModelPusherConfig
 from thyroid.utils import save_object, load_object
-from thyroid.entity.artifact_entity import FeatureEngineeringArtifact, ModelTrainerArtifact, ModelPusherArtifact
+from thyroid.entity.artifact_entity import DataTransformationArtifact, ModelTrainerArtifact, ModelPusherArtifact
 
 class ModelPusher:
 
     def __init__(self,model_pusher_config:ModelPusherConfig,
-        feature_engineering_artifact:FeatureEngineeringArtifact,
+        data_transformation_artifact:DataTransformationArtifact,
         model_trainer_artifact:ModelTrainerArtifact):
         try:
             logging.info(f"{'>>'*20} Model Pusher {'<<'*20}")
             self.model_pusher_config=model_pusher_config
-            self.feature_engineering_artifact=feature_engineering_artifact
+            self.data_transformation_artifact=data_transformation_artifact
             self.model_trainer_artifact=model_trainer_artifact
             self.model_resolver = ModelResolver(model_registry=self.model_pusher_config.saved_model_dir)
 
@@ -26,8 +26,8 @@ class ModelPusher:
             # Load object 
             logging.info("Loading knn_imputer, model and target encoder")
             model = load_object(file_path=self.model_trainer_artifact.model_path)
-            knn_imputer = load_object(file_path=self.feature_engineering_artifact.knn_imputer_object_path)
-            target_encoder = load_object(file_path=self.feature_engineering_artifact.target_encoder_path)
+            knn_imputer = load_object(file_path=self.data_transformation_artifact.knn_imputer_object_path)
+            target_encoder = load_object(file_path=self.data_transformation_artifact.target_encoder_path)
 
             # Model pusher dir
             logging.info("Saving model into model pusher directory")

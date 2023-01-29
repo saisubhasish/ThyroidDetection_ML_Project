@@ -15,11 +15,11 @@ from thyroid.entity import artifact_entity,config_entity
 class ModelTrainer:
 
     def __init__(self, model_trainer_config:config_entity.ModelTrainerConfig,
-                feature_engineering_artifact:artifact_entity.FeatureEngineeringArtifact):
+                data_transformation_artifact:artifact_entity.DataTransformationArtifact):
         try:
             logging.info(f"{'>>'*20} Model Trainer {'<<'*20}")
             self.model_trainer_config=model_trainer_config
-            self.feature_engineering_artifact=feature_engineering_artifact
+            self.data_transformation_artifact=data_transformation_artifact
 
         except Exception as e:
             raise ThyroidException(e, sys)
@@ -67,8 +67,8 @@ class ModelTrainer:
         """
         try:
             logging.info("Loading train and test array.")
-            train_arr = utils.load_numpy_array_data(file_path=self.feature_engineering_artifact.transformed_train_path)
-            test_arr = utils.load_numpy_array_data(file_path=self.feature_engineering_artifact.transformed_test_path)
+            train_arr = utils.load_numpy_array_data(file_path=self.data_transformation_artifact.transformed_train_path)
+            test_arr = utils.load_numpy_array_data(file_path=self.data_transformation_artifact.transformed_test_path)
 
             logging.info("Splitting input and target feature from both train and test arr.")
             x_train,y_train = train_arr[:,:-1],train_arr[:,-1]

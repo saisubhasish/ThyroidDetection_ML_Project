@@ -17,13 +17,13 @@ from thyroid.config import TARGET_COLUMN
 
 
 
-class FeatureEngineering:
+class DataTransformation:
 
-    def __init__(self,feature_engineering_config:config_entity.FeatureEngineeringConfig,
+    def __init__(self,data_transformation_config:config_entity.DataTransformationConfig,
                     data_validation_artifact:artifact_entity.DataValidationArtifact):
         try:
-            logging.info(f"{'>>'*20} Feature Engineering {'<<'*20}")
-            self.feature_engineering_config=feature_engineering_config
+            logging.info(f"{'>>'*20} Data Transformation {'<<'*20}")
+            self.data_transformation_config=data_transformation_config
             self.data_validation_artifact=data_validation_artifact
         except Exception as e:
             raise ThyroidException(e, sys)
@@ -80,7 +80,7 @@ class FeatureEngineering:
             raise ThyroidException(e, sys)
     
 
-    def initiate_feature_engineering(self,) -> artifact_entity.FeatureEngineeringArtifact:
+    def initiate_data_transformation(self,) -> artifact_entity.DataTransformationArtifact:
         try:
             # Reading training and testing file
             logging.info("Reading training and testing file")
@@ -124,7 +124,7 @@ class FeatureEngineering:
             logging.info(f"Target feature label encoded values: {target_feature_test_arr}")
 
             # Imputing null values with KNNImputer
-            imputation_pipeline = FeatureEngineering.get_knn_imputer_object()
+            imputation_pipeline = DataTransformation.get_knn_imputer_object()
             imputation_pipeline.fit_transform(input_feature_train_df)
             logging.info(input_feature_train_df.columns)
             
@@ -150,22 +150,22 @@ class FeatureEngineering:
 
 
             # Save numpy array
-            utils.save_numpy_array_data(file_path=self.feature_engineering_config.transformed_train_path, array=train_arr)
-            utils.save_numpy_array_data(file_path=self.feature_engineering_config.transformed_test_path, array=test_arr)
+            utils.save_numpy_array_data(file_path=self.data_transformation_config.transformed_train_path, array=train_arr)
+            utils.save_numpy_array_data(file_path=self.data_transformation_config.transformed_test_path, array=test_arr)
 
             # Saving object
-            utils.save_object(file_path=self.feature_engineering_config.knn_imputer_object_path, obj=imputation_pipeline)
-            utils.save_object(file_path=self.feature_engineering_config.target_encoder_path, obj=label_encoder)
+            utils.save_object(file_path=self.data_transformation_config.knn_imputer_object_path, obj=imputation_pipeline)
+            utils.save_object(file_path=self.data_transformation_config.target_encoder_path, obj=label_encoder)
 
             # Preparing Artifact
-            feature_engineering_artifact = artifact_entity.FeatureEngineeringArtifact(
-                knn_imputer_object_path=self.feature_engineering_config.knn_imputer_object_path,
-                transformed_train_path = self.feature_engineering_config.transformed_train_path,
-                transformed_test_path = self.feature_engineering_config.transformed_test_path,
-                target_encoder_path = self.feature_engineering_config.target_encoder_path)
+            data_transformation_artifact = artifact_entity.DataTransformationArtifact(
+                knn_imputer_object_path=self.data_transformation_config.knn_imputer_object_path,
+                transformed_train_path = self.data_transformation_config.transformed_train_path,
+                transformed_test_path = self.data_transformation_config.transformed_test_path,
+                target_encoder_path = self.data_transformation_config.target_encoder_path)
 
-            logging.info(f"Data transformation object {feature_engineering_artifact}")
-            return feature_engineering_artifact
+            logging.info(f"Data transformation object {data_transformation_artifact}")
+            return data_transformation_artifact
             
         except Exception as e:
             raise ThyroidException(e, sys)

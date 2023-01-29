@@ -61,7 +61,7 @@ def start_batch_prediction(input_file_path):
         except Exception as e:
             raise ThyroidException(e, sys)
 
-        logging.info("Feature engineering")
+        logging.info("Data Transformation")
         try:
             df = model_resolver.feature_encoding(df=df)
             exclude_columns = [TARGET_COLUMN]
