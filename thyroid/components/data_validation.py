@@ -59,10 +59,10 @@ class DataValidation:
         
         df : Accepts a pandas dataframe
         =========================================================================================
-        returns Pandas Dataframe by dropping 'TSH measured', 'T3 measured', 'TT4 measured', 'T4U measured', 'FTI measured', 'TBG measured', 'referral source'
+        returns Pandas Dataframe by dropping 'TSH measured', 'T3 measured', 'TT4 measured', 'T4U measured', 'FTI measured', 'TBG measured', 'referral source', 'query on thyroxine'
         """
         try:
-            drop_columns = ['TSH measured', 'T3 measured', 'TT4 measured', 'T4U measured', 'FTI measured', 'TBG measured', 'referral source']
+            drop_columns = ['TSH measured', 'T3 measured', 'TT4 measured', 'T4U measured', 'FTI measured', 'TBG measured', 'referral source', 'query on thyroxine']
             logging.info(f"UnnecessaColumns dropped: {drop_columns}")
             self.validation_error[report_key_name] = drop_columns
             drop_columns = df[drop_columns]
