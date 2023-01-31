@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+  <meta charset="UTF-8">
+  <title>HealthCare</title>
+</head>
+
+<body style="background-color:rgba(255,200,100)";>
+ <div class="login">
+	<h1 style="text-align: center; background-color:rgba(177,18,38);" >Thyroid Disease Detection</h1>
+
+     <!-- Main Input For Receiving Query to our ML -->
+      <table>
+        <form action="{{ url_for('predict_api')}}"method="post">
+            <tr>
+                <td>
+                    <label style="font-weight: bold;">
+                    Age:
+                    </label>
+                </td>
+                <td><input type="text" name="age" placeholder="age" required="required" /><br>
+                </td>
+            </tr>
+
+            <tr>
+              <td>
+                  <label style="font-weight: bold;">
+                    Sex(F:0 | M:1):
+                  </label>
+              </td>
+              <td><input type="text" name="sex" placeholder="sex" required="required" /><br>
+              </td>
+            </tr>
+            
+            <tr>
+              <td>
+                  <label style="font-weight: bold;">
+                    On Thyroxine(F:0 | T:1):
+                  </label>
+              </td>
+              <td><input type="text" name="on thyroxine" placeholder="on thyroxine" required="required" /><br>
+              </td>
+            </tr>
+
+            <tr>
+              <td>
+                  <label style="font-weight: bold;">
+                    On Antithyroid Medication(F:0 | T:1):
+                  </label>
+              </td>
+              <td><input type="text" name="on antithyroid medication" placeholder="on antithyroid medication" required="required" /><br>
+              </td>
+            </tr>
+            
+            <tr>
+              <td>
+                  <label style="font-weight: bold;">
+                    Sick(F:0 | T:1):
+                  </label>
+              </td>
+              <td><input type="text" name="sick" placeholder="sick" required="required" /><br>
+              </td>
+            </tr>
+            
+            <tr>
+              <td>
+                  <label style="font-weight: bold;">
+                    Pregnant(F:0 | T:1):
+                  </label>
+              </td>
+              <td><input type="text" name="pregnant" placeholder="pregnant" required="required" /><br>
+              </td>
+            </tr>
+            
+            <tr>
+              <td>
+                  <label style="font-weight: bold;">
+                    Thyroid Surgery(F:0 | T:1):
+                  </label>
+              </td>
+              <td><input type="text" name="thyroid surgery" placeholder="thyroid surgery" required="required" /><br>
+              </td>
+            </tr>
+
+            <tr>
+              <td>
+                  <label style="font-weight: bold;">
+                    I131 treatment(F:0 | T:1):
+                  </label>
+              </td>
+              <td><input type="text" name="I131 treatment" placeholder="I131 treatment" required="required" /><br>
+              </td>
+            </tr>
+
+            <tr>
+              <td>
+                  <label style="font-weight: bold;">
+                    Query Hypothyroid(F:0 | T:1):
+                  </label>
+              </td>
+              <td><input type="text" name="query hypothyroid" placeholder="query hypothyroid" required="required" /><br>
+              </td>
+            </tr>
+
+            <tr>
+              <td>
+                  <label style="font-weight: bold;">
+                    Query Hyperthyroid(F:0 | T:1):
+                  </label>
+              </td>
+              <td><input type="text" name="query hyperthyroid" placeholder="query hyperthyroid" required="required" /><br>
+              </td>
+            </tr>
+
+            <tr>
+              <td>
+                  <label style="font-weight: bold;">
+                    Lithium(F:0 | T:1):
+                  </label>
+              </td>
+              <td><input type="text" name="lithium" placeholder="lithium" required="required" /><br>
+              </td>
+            </tr>
+
+            <tr>
+              <td>
+                  <label style="font-weight: bold;">
+                    Goitre(F:0 | T:1):
+                  </label>
+              </td>
+              <td><input type="text" name="goitre" placeholder="goitre" required="required" /><br>
+              </td>
+            </tr>
+
+            <tr>
+              <td>
+                  <label style="font-weight: bold;">
+                    Tumor(F:0 | T:1):
+                  </label>
+              </td>
+              <td><input type="text" name="tumor" placeholder="tumor" required="required" /><br>
+              </td>
+            </tr>
+
+            <tr>
+              <td>
+                  <label style="font-weight: bold;">
+                    Hypopituitary(F:0 | T:1):
+                  </label>
+              </td>
+              <td><input type="text" name="hypopituitary" placeholder="hypopituitary" required="required" /><br>
+              </td>
+            </tr>
+
+            <tr>
+              <td>
+                  <label style="font-weight: bold;">
+                    psych(F:0 | T:1):
+                  </label>
+              </td>
+              <td><input type="text" name="psych" placeholder="psych" required="required" /><br>
+              </td>
+            </tr>
+
+            <tr>
+              <td>
+                  <label style="font-weight: bold;">
+                    TSH:
+                  </label>
+              </td>
+              <td><input type="text" name="TSH" placeholder="TSH" required="required" /><br>
+              </td>
+            </tr>
+
+            <tr>
+              <td>
+                  <label style="font-weight: bold;">
+                    TT4:
+                  </label>
+              </td>
+              <td><input type="text" name="TT4" placeholder="TT4" required="required" /><br>
+              </td>
+            </tr>
+
+            <tr>
+              <td>
+                  <label style="font-weight: bold;">
+                    T4U:
+                  </label>
+              </td>
+              <td><input type="text" name="T4U" placeholder="T4U" required="required" /><br>
+              </td>
+            </tr>
+
+            <tr>
+              <td>
+                  <label style="font-weight: bold;">
+                    FTI:
+                  </label>
+              </td>
+              <td><input type="text" name="FTI" placeholder="FTI" required="required" /><br>
+              </td>
+            </tr>
+      </table>
+      
+      <br><br>     
+      
+        <button  style="font-weight: bold;" type="submit" class="btn btn-primary btn-block btn-large">Predict</button>
+    </form>
+
+   <br>
+   <br>
+  
+ </div>
+ {{cat_prediction}}
+
+ <br>
+ <br>
+ 
+
+</body>
+</html>

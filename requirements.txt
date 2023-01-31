@@ -18,4 +18,5 @@ PyYAML
 numpy
 scikit-learn
 apache-airflow
+flask
 -e .
