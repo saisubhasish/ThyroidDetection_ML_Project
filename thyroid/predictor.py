@@ -2,7 +2,6 @@ import os, sys
 import pandas as pd
 import numpy as np
 from thyroid.entity.config_entity import TARGET_ENCODER_OBJECT_FILE_NAME, MODEL_FILE_NAME, KNN_IMPUTER_OBJECT_FILE_NAME
-from glob import glob
 from typing import Optional
 from thyroid.exception import ThyroidException
 

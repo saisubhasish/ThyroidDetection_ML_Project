@@ -30,7 +30,8 @@ def home():
 def predict_api():
     try:
         data = [float(x) for x in request.form.values()]
-        prediction = model.predict(data)
+        final_data = np.array(data).reshape(1,-1)
+        prediction = model.predict(final_data)
         cat_prediction = target_encoder.inverse_transform(prediction)
         print(cat_prediction)
         
