@@ -35,7 +35,7 @@ def predict_api():
         cat_prediction = target_encoder.inverse_transform(prediction)
         print(cat_prediction)
         
-        return render_template('home.html', output_text="The Quality of Wine is {}.".format(cat_prediction))
+        return render_template('home.html', output_text="The prediction of Disease is: {}.".format(cat_prediction))
     
     except Exception as e:
         raise ThyroidException(error_message=e, error_detail=sys)
