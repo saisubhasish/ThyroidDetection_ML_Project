@@ -109,8 +109,14 @@ Before we run the project, make sure that you are having MongoDB in your local s
 ## Project Archietecture
 ![image](https://user-images.githubusercontent.com/102937478/216247171-b2b6c281-db84-4327-9aed-b34d9e1aaa6b.png)
 
+#### Real-time Prediction
+
+![image](https://user-images.githubusercontent.com/102937478/216313545-4db56ed7-63f0-4476-b518-10ed51a32f17.png)
+
+
 ## Deployment Archietecture
-![image](https://user-images.githubusercontent.com/57321948/193536973-4530fe7d-5509-4609-bfd2-cd702fc82423.png)
+![Screenshot_19-overlay](https://user-images.githubusercontent.com/102937478/216320740-d0494ad2-c99c-4a1b-91e3-01b86c0deaee.png)
+
 ![image](https://user-images.githubusercontent.com/102937478/216247497-0d54dd7b-3916-4670-8465-3f1fcf6e0a9a.png)
 
 ### Step 1: Clone the repository
