@@ -74,7 +74,7 @@ main--> is your branch name
 
 ### Deployment link
 ```
-http://ec2-65-2-6-7.ap-south-1.compute.amazonaws.com:8080/](http://ec2-15-206-149-89.ap-south-1.compute.amazonaws.com:8080)
+http://ec2-15-206-100-39.ap-south-1.compute.amazonaws.com:8080
 (Link might have expired)
 ```
 ### Problem Statement
