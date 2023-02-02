@@ -1,3 +1,5 @@
+# Thyroid Disease Detection
+![image](https://user-images.githubusercontent.com/102937478/216236351-ca6ed765-619f-4a44-bb9a-788b40be20b8.png)
 
 ### Step 1 - Install the requirements
 
