@@ -14,7 +14,7 @@ with DAG(                         # Directed Acyclic Graph
     # [END default_args]
     description='Thyroid Disease Detection',
     schedule_interval="@weekly",  # Pipeline will run weekly basis
-    start_date=pendulum.datetime(2023, 1, 26, tz="UTC"),   # Start date for pipeline
+    start_date=pendulum.datetime(2023, 2, 2, tz="UTC"),   # Start date for pipeline
     catchup=False,              # Flag relation to previous run
     tags=['example'],           # list of string
 ) as dag:

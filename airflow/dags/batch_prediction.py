@@ -13,7 +13,7 @@ with DAG(
     # [END default_args]
     description='Thyroid Disease Detection',
     schedule_interval="@weekly",
-    start_date=pendulum.datetime(2023, 1, 26, tz="UTC"),
+    start_date=pendulum.datetime(2023, 2, 2, tz="UTC"),
     catchup=False,
     tags=['example'],
 ) as dag:
