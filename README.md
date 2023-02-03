@@ -109,7 +109,7 @@ Before we run the project, make sure that you are having MongoDB in your local s
 ## Project Archietecture
 ![image](https://user-images.githubusercontent.com/102937478/216247171-b2b6c281-db84-4327-9aed-b34d9e1aaa6b.png)
 
-![image](https://user-images.githubusercontent.com/102937478/216622432-7d1a50d7-0cce-4c5b-a23d-3da14b660a75.png)
+![image](https://user-images.githubusercontent.com/102937478/216624505-7b77a44a-223f-4972-a681-dfc611aa2b94.png)
 
 
 #### Real-time Prediction
