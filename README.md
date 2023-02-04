@@ -122,6 +122,12 @@ Before we run the project, make sure that you are having MongoDB in your local s
 
 ![image](https://user-images.githubusercontent.com/102937478/216247497-0d54dd7b-3916-4670-8465-3f1fcf6e0a9a.png)
 
+## Pipeline
+![image](https://user-images.githubusercontent.com/102937478/216771378-4990ae29-e5c2-44df-9af4-abb1724e26b5.png)
+
+![image](https://user-images.githubusercontent.com/102937478/216771387-5ff808e2-fda3-449c-b444-37d064d552e4.png)
+
+
 ### Step 1: Clone the repository
 ```bash
 git clone https://github.com/saisubhasish/APS-Sensor-Fault-Detection
