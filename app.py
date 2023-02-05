@@ -31,9 +31,11 @@ def predict_api():
     try:
         data = [float(x) for x in request.form.values()]
         final_data = np.array(data).reshape(1,-1)
+        logging.info(f"The input for the real time prediction: {final_data}")
         prediction = model.predict(final_data)
         cat_prediction = target_encoder.inverse_transform(prediction)
         print(cat_prediction)
+        logging.info(f"The decoded output for the real time prediction: {cat_prediction}")
         
         return render_template('home.html', output_text="The prediction of Disease is: {}.".format(cat_prediction))
     
