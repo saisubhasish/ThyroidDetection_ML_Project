@@ -74,7 +74,7 @@ main--> is your branch name
 
 ### Deployment link
 ```
-http://ec2-65-2-6-7.ap-south-1.compute.amazonaws.com:8080/](http://ec2-15-206-149-89.ap-south-1.compute.amazonaws.com:8080)
+http://ec2-15-206-100-39.ap-south-1.compute.amazonaws.com:8080
 (Link might have expired)
 ```
 ### Problem Statement
@@ -107,7 +107,10 @@ Before we run the project, make sure that you are having MongoDB in your local s
 
 
 ## Project Archietecture
-![image](https://user-images.githubusercontent.com/102937478/216247171-b2b6c281-db84-4327-9aed-b34d9e1aaa6b.png)
+![image](https://user-images.githubusercontent.com/102937478/216756199-b340e838-74e8-43c7-964a-5ac6e3a8d5ff.png)
+
+![image](https://user-images.githubusercontent.com/102937478/216757352-0d9a4c4c-b0c3-43c1-9bf8-92ee9a6df352.png)
+
 
 #### Real-time Prediction
 
@@ -118,6 +121,12 @@ Before we run the project, make sure that you are having MongoDB in your local s
 ![Screenshot_19-overlay](https://user-images.githubusercontent.com/102937478/216320740-d0494ad2-c99c-4a1b-91e3-01b86c0deaee.png)
 
 ![image](https://user-images.githubusercontent.com/102937478/216247497-0d54dd7b-3916-4670-8465-3f1fcf6e0a9a.png)
+
+## Pipeline
+![image](https://user-images.githubusercontent.com/102937478/216771378-4990ae29-e5c2-44df-9af4-abb1724e26b5.png)
+
+![image](https://user-images.githubusercontent.com/102937478/216771387-5ff808e2-fda3-449c-b444-37d064d552e4.png)
+
 
 ### Step 1: Clone the repository
 ```bash
