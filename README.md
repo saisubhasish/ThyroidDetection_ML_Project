@@ -74,8 +74,14 @@ main--> is your branch name
 
 ### Deployment link
 ```
+Airflow:
 http://ec2-15-206-100-39.ap-south-1.compute.amazonaws.com:8080
+
 (Link might have expired)
+
+For real-time prediction:
+http://thyroiddiseasedetection-env-1.eba-wj7msmpa.us-east-1.elasticbeanstalk.com/
+
 ```
 ### Problem Statement
 Thyroid disease is one of the most common disease with endocrine disorder in the human population today. For example hyperthyroidism (over) and hypothyroidism (under), which are relate to release of amount of thyroid hormones the thyroid gland produces and whether it is over active trusted source (when thyroid gland makes too much thyroid hormone) or under active trusted source (when the thyroid gland doesn’t make enough thyroid hormone). We need to identify whether the patient has thyroid or not.
@@ -97,11 +103,13 @@ We need to build a ML model which will be used by hospitals and help the hospita
 2. AWS EC2
 3. AWS ECR
 4. Github Actions
-5. Terraform
+5. Airflow
+6. AWS Elastic Beanstalk
 
 ## How to run?
 Before we run the project, make sure that you are having MongoDB in your local system, with Compass since we are using MongoDB for data storage. You also need AWS account to access the service like S3, ECR and EC2 instances.
 
+For real-time prediction you can use the above Elastic Beanstalk link 
 ## Data Collections
 ![image](https://user-images.githubusercontent.com/102937478/216246951-7c187908-a8b0-4c64-8f37-6549c49e20fa.png)
 
@@ -137,6 +145,11 @@ git clone https://github.com/saisubhasish/APS-Sensor-Fault-Detection
 
 ```bash
 conda create -n thyroid python=3.8 -y
+
+or 
+
+conda create --prefix ./env python=3.7 -y
+conda activate ./env
 ```
 
 ```bash
