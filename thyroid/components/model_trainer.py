@@ -74,10 +74,10 @@ class ModelTrainer:
             x_train,y_train = train_arr[:,:-1],train_arr[:,-1]
             x_test,y_test = test_arr[:,:-1],test_arr[:,-1]
 
-            #logging.info('Hyperparameter tuning using GridSearchCV')
-            #Best_Params = self.fine_tune(x=x_train,y=y_train)
-            #print(f"The best parameters for XGBoostClassifier are : {Best_Params}")
-            #logging.info(f"The best parameters for XGBoostClassifier are : {Best_Params}")
+            logging.info('Hyperparameter tuning using GridSearchCV')
+            Best_Params = self.fine_tune(x=x_train,y=y_train)
+            print(f"The best parameters for XGBoostClassifier are : {Best_Params}")
+            logging.info(f"The best parameters for XGBoostClassifier are : {Best_Params}")
 
             logging.info("Train the model")
             model = self.train_model(x=x_train,y=y_train)
