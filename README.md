@@ -137,7 +137,7 @@ or
 
 
 ## Project Archietecture
-![image](https://user-images.githubusercontent.com/102937478/216756199-b340e838-74e8-43c7-964a-5ac6e3a8d5ff.png)
+![Architect_Batch_Prediction](https://user-images.githubusercontent.com/102937478/218516997-dc84fe49-17ef-44ce-958f-c271d73442ba.jpg)
 
 ![image](https://user-images.githubusercontent.com/102937478/216757352-0d9a4c4c-b0c3-43c1-9bf8-92ee9a6df352.png)
 
