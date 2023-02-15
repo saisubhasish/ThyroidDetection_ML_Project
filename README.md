@@ -96,6 +96,7 @@ We need to build a ML model which will be used by hospitals and help the hospita
 4. Docker
 5. MongoDB
 6. Flask
+7. FastAPI
 
 ## Infrastructure Required.
 
