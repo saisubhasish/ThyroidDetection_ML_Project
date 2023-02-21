@@ -96,6 +96,7 @@ We need to build a ML model which will be used by hospitals and help the hospita
 4. Docker
 5. MongoDB
 6. Flask
+7. FastAPI
 
 ## Infrastructure Required.
 
@@ -109,13 +110,35 @@ We need to build a ML model which will be used by hospitals and help the hospita
 ## How to run?
 Before we run the project, make sure that you are having MongoDB in your local system, with Compass since we are using MongoDB for data storage. You also need AWS account to access the service like S3, ECR and EC2 instances.
 
+By running the Airflow link you will get this interface
+
+![image](https://user-images.githubusercontent.com/102937478/217749340-80b32acb-614b-48d8-b886-97c47891c3ef.png)
+
+
 For real-time prediction you can use the above Elastic Beanstalk link 
+
+or 
+
+1. Run this project in local by executing the code "python app.py"
+2. In browser open "http://127.0.0.1:5000/" link
+3. You will get an UI displayed below.
+![Screenshot (75)](https://user-images.githubusercontent.com/102937478/217747754-4604616b-29db-4d61-8d92-1ac53b53b690.png)
+4. Enter patirnt data and click on "Predict" button
+![Screenshot_23](https://user-images.githubusercontent.com/102937478/217747981-adf03355-6b84-4acd-92f8-1901fc746674.png)
+5. You'll get the result below input table
+![Screenshot_24](https://user-images.githubusercontent.com/102937478/217748191-dae2e45e-959a-428b-a4d3-d6b8db44fe8b.png)
+6. Enter patirnt data and click on "Predict" button
+![Screenshot_25](https://user-images.githubusercontent.com/102937478/217748255-a7af23e8-7706-4aab-a73b-0510ecbeccd8.png)
+7. You'll get the result below input table
+![Screenshot_26](https://user-images.githubusercontent.com/102937478/217748290-f1a48eaa-3875-4685-a714-7da77a9029e5.png)
+
+
 ## Data Collections
 ![image](https://user-images.githubusercontent.com/102937478/216246951-7c187908-a8b0-4c64-8f37-6549c49e20fa.png)
 
 
 ## Project Archietecture
-![image](https://user-images.githubusercontent.com/102937478/216756199-b340e838-74e8-43c7-964a-5ac6e3a8d5ff.png)
+![Architect_Batch_Prediction](https://user-images.githubusercontent.com/102937478/218516997-dc84fe49-17ef-44ce-958f-c271d73442ba.jpg)
 
 ![image](https://user-images.githubusercontent.com/102937478/216757352-0d9a4c4c-b0c3-43c1-9bf8-92ee9a6df352.png)
 
