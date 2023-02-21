@@ -17,7 +17,7 @@ def get_requirements()->List[str]:    # Provides information to developer that t
 
 setup(
     name = "thyroid",
-    version = "0.0.1",
+    version = "0.0.2",
     author = "SaiSubhasish",
     author_email = "saisubhasishrout777@gmail.com",
     packages = find_packages(),       # find_packages() will convert the folder with __init__.py file to library/package
