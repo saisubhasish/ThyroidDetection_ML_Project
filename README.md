@@ -136,6 +136,7 @@ or
 ## Data Collections
 ![image](https://user-images.githubusercontent.com/102937478/216246951-7c187908-a8b0-4c64-8f37-6549c49e20fa.png)
 
+![DataPipeline](https://user-images.githubusercontent.com/102937478/224525491-b355b3c6-66c5-49de-aa66-fc38fcb9fec0.jpg)
 
 ## Project Archietecture
 ![Architect_Batch_Prediction](https://user-images.githubusercontent.com/102937478/218516997-dc84fe49-17ef-44ce-958f-c271d73442ba.jpg)
