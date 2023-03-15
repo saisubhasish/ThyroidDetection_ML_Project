@@ -1,7 +1,7 @@
 # Thyroid Disease Detection
 ![image](https://user-images.githubusercontent.com/102937478/216236728-dad1775c-37bc-45a5-861e-9e430ea781e3.png)
 
-# Detailed video on code explanation
+### Detailed video on code explanation
 ```
 https://drive.google.com/file/d/11-GG7Cn-C0IdIJ-fW-5mxtFrp-BHXBbi/view?usp=share_link
 ```
