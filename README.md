@@ -5,6 +5,32 @@
 ```
 https://drive.google.com/file/d/11-GG7Cn-C0IdIJ-fW-5mxtFrp-BHXBbi/view?usp=share_link
 ```
+##Documentation
+
+### High Level Design
+```
+https://docs.google.com/document/d/1XgO9dz4_28M_SdMRPcn9cXN_s9bjX1-6/edit?usp=share_link&ouid=114030088195074570088&rtpof=true&sd=true
+```
+
+### Low Level Design
+```
+https://docs.google.com/document/d/1pDll1ivNxFYKHhnR8WFm7POmQ5GEZHkA/edit?usp=share_link&ouid=114030088195074570088&rtpof=true&sd=true
+```
+
+### Detailed Project Report
+```
+https://docs.google.com/presentation/d/1pQM0XsmYTQg37GGijbhGrq0QEpSA1KgH/edit?usp=share_link&ouid=114030088195074570088&rtpof=true&sd=true
+```
+
+### Architecture
+```
+https://docs.google.com/document/d/1oc8bmBu_0C_gsksGagc8QM67vEE8rZ0e/edit?usp=share_link&ouid=114030088195074570088&rtpof=true&sd=true
+```
+
+### Wireframe Document
+```
+https://docs.google.com/document/d/19pJB5wTDBlpDDbpZSbKYCwdULjEuUXHb/edit?usp=share_link&ouid=114030088195074570088&rtpof=true&sd=true
+```
 
 ### Step 1 - Install the requirements
 
